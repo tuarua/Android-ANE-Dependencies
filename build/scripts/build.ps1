@@ -223,16 +223,18 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     }
     Copy-Item -Path $currentDir\cache\$category\$artifactId-$version.jar $currentDir\platforms\android\$artifactId-$version.jar -Force
 
+    if (-not (Test-Path "$currentDir\..\..\anes\$category")) {
+        New-Item -Path $currentDir\..\..\anes\$category -ItemType "directory"
+    }
 
     
-    $ADT_STRING = "$ADT_PATH -package -target ane $currentDir\..\..\anes\$groupId.$artifactId-$version.ane extension.xml "
+    $ADT_STRING = "$ADT_PATH -package -target ane $currentDir\..\..\anes\$category\$groupId.$artifactId-$version.ane extension.xml "
     $ADT_STRING += "-swc DummyANE.swc "
     
     
     $ADT_FILES = ""
     $ADT_FILES += "-C platforms/android library.swf classes.jar "
     $ADT_FILES += "-platformoptions platforms/android/platform.xml "
-     # Don't forget to loop over dependancies
     $ADT_FILES += "$artifactId-$version.jar "
     if ($type -eq "aar") {
         $ADT_FILES += "$artifactId-$version-res/. "
