@@ -1,1 +1,1 @@
-# Android-ANE-Dependancies
+# Android-ANE-Dependencies
