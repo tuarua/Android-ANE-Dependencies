@@ -3,7 +3,7 @@ Param(
 [string] $package
 )
 
-Write-Host "package $package"
+#Write-Host "package $package"
 
 $ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_26\bin\adt.bat"
 $MAVEN_REPO = "https://repo1.maven.org/maven2/"
@@ -53,10 +53,10 @@ function Get-Package {
 
 [xml]$XmlDocument = Get-Content $currentDir\packages.xml
 
-for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
-    $packageXml = $XmlDocument.packages.package[$i]
-    echo $XmlDocument.packages.package[$i].name
-}
+#for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
+ #   $packageXml = $XmlDocument.packages.package[$i]
+  #  echo $XmlDocument.packages.package[$i].name
+#}
 
 #exit
 
