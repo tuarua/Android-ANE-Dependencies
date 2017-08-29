@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension xmlns="http://ns.adobe.com/air/extension/19.0">
-    <id>com.google.android.gms.play-services-ads</id>
-    <name>play-services-ads</name>
+    <id>com.google.android.gms.play-services-ads-lite</id>
+    <name>play-services-ads-lite</name>
     <copyright></copyright>
     <versionNumber>11.2.0</versionNumber>
     <platforms>
