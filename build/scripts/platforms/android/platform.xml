@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
     <platform xmlns="http://ns.adobe.com/air/extension/19.0">
         <packagedDependencies>
-        <packagedDependency>play-services-ads-11.2.0.jar</packagedDependency><packagedDependency>play-services-ads-lite-11.2.0.jar</packagedDependency><packagedDependency>play-services-gass-11.2.0.jar</packagedDependency>
+        <packagedDependency>play-services-ads-lite-11.2.0.jar</packagedDependency>
     </packagedDependencies>
         <packagedResources>
             
         <packagedResource>
-            <packageName>com.google.android.gms</packageName>
-            <folderName>play-services-ads-11.2.0-res</folderName>
-        </packagedResource>
-            <packagedResource>
-            <packageName>com.google.android.gms.play-services-ads-lite</packageName>
+            <packageName>com.google.android.gms.ads</packageName>
             <folderName>play-services-ads-lite-11.2.0-res</folderName>
-            </packagedResource>
-            <packagedResource>
-            <packageName>com.google.android.gms.play-services-gass</packageName>
-            <folderName>play-services-gass-11.2.0-res</folderName>
-            </packagedResource>
+        </packagedResource>
             </packagedResources>
     </platform>

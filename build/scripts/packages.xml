@@ -80,29 +80,14 @@
             </package>
         </dependancies>
     </package>
-    <package name="play-services-ads">
+    <package name="play-services-ads-lite">
         <groupId>com.google.android.gms</groupId>
-        <artifactId>play-services-ads</artifactId>
+        <packageName>com.google.android.gms.ads</packageName>
+        <artifactId>play-services-ads-lite</artifactId>
         <version>11.2.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
-        <dependancies>
-	       <package name="play-services-ads-lite">
-		        <groupId>com.google.android.gms</groupId>
-		        <artifactId>play-services-ads-lite</artifactId>
-		        <version>11.2.0</version>
-		        <type>aar</type>
-		        <repo>google</repo>
-	    	</package>
-	    	<package name="play-services-gass">
-		        <groupId>com.google.android.gms</groupId>
-		        <artifactId>play-services-gass</artifactId>
-		        <version>11.2.0</version>
-		        <type>aar</type>
-		        <repo>google</repo>
-	    	</package>
-        </dependancies>
     </package>
     <package name="play-services-base">
         <groupId>com.google.android.gms</groupId>

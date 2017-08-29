@@ -54,16 +54,19 @@ function Get-Package {
 [xml]$XmlDocument = Get-Content $currentDir\packages.xml
 
 #for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
- #   $packageXml = $XmlDocument.packages.package[$i]
-  #  echo $XmlDocument.packages.package[$i].name
+#   $packageXml = $XmlDocument.packages.package[$i]
+#    echo $XmlDocument.packages.package[$i].name
 #}
-
 #exit
 
 for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 #for($i=0;$i -lt 1;$i++) {    
     $name = $XmlDocument.packages.package[$i].name
     $groupId = $XmlDocument.packages.package[$i].groupId
+    $packageName = $groupId
+    if($XmlDocument.packages.package[$i].packageName) {
+        $packageName = $XmlDocument.packages.package[$i].packageName
+    }
     $artifactId = $XmlDocument.packages.package[$i].artifactId
     $version = $XmlDocument.packages.package[$i].version
     $type = $XmlDocument.packages.package[$i].type
@@ -96,7 +99,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         $numResources = $numResources + 1
         $packagedResourceLoops += "
         <packagedResource>
-            <packageName>$groupId</packageName>
+            <packageName>$packageName</packageName>
             <folderName>$artifactId-$version-res</folderName>
         </packagedResource>"
     }
