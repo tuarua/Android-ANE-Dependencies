@@ -3,7 +3,7 @@
     <id>com.google.android.gms.play-services-ads-lite</id>
     <name>play-services-ads-lite</name>
     <copyright></copyright>
-    <versionNumber>11.2.0</versionNumber>
+    <versionNumber>11.4.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment>

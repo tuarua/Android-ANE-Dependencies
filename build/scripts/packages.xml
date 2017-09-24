@@ -84,7 +84,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>11.2.0</version>
+        <version>11.4.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -92,7 +92,7 @@
     <package name="play-services-base">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-base</artifactId>
-        <version>11.2.0</version>
+        <version>11.4.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -100,14 +100,14 @@
             <package name="play-services-basement">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-basement</artifactId>
-                <version>11.2.0</version>
+                <version>11.4.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-tasks">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-tasks</artifactId>
-                <version>11.2.0</version>
+                <version>11.4.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -116,7 +116,7 @@
     <package name="play-services-location">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-location</artifactId>
-        <version>11.2.0</version>
+        <version>11.4.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -125,7 +125,7 @@
     <package name="play-services-maps">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-maps</artifactId>
-        <version>11.2.0</version>
+        <version>11.4.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
