@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension xmlns="http://ns.adobe.com/air/extension/19.0">
-    <id>com.google.android.gms.play-services-ads-lite</id>
-    <name>play-services-ads-lite</name>
+    <id>com.google.firebase.firebase-analytics</id>
+    <name>firebase-analytics</name>
     <copyright></copyright>
-    <versionNumber>11.4.0</versionNumber>
+    <versionNumber>11.4.2</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment>

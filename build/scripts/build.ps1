@@ -53,14 +53,8 @@ function Get-Package {
 
 [xml]$XmlDocument = Get-Content $currentDir\packages.xml
 
-#for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
-#   $packageXml = $XmlDocument.packages.package[$i]
-#    echo $XmlDocument.packages.package[$i].name
-#}
-#exit
 
 for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
-#for($i=0;$i -lt 1;$i++) {    
     $name = $XmlDocument.packages.package[$i].name
     $groupId = $XmlDocument.packages.package[$i].groupId
     $packageName = $groupId
@@ -104,15 +98,22 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         </packagedResource>"
     }
 
-   
     if($numDependancies -gt 0) {
         $dependancies = $XmlDocument.packages.package[$i].dependancies
         for($j=0;$j -lt $numDependancies;$j++) {
-            $depend_groupId = $dependancies.package[$j].groupId
-            $depend_artifactId = $dependancies.package[$j].artifactId
-            $depend_version = $dependancies.package[$j].version
-            $depend_type = $dependancies.package[$j].type
-            $depend_repo = $dependancies.package[$j].repo
+            if($numDependancies -eq 1) {
+                $depend_groupId = $dependancies.package.groupId
+                $depend_artifactId = $dependancies.package.artifactId
+                $depend_version = $dependancies.package.version
+                $depend_type = $dependancies.package.type
+                $depend_repo = $dependancies.package.repo
+            } else {
+                $depend_groupId = $dependancies.package[$j].groupId
+                $depend_artifactId = $dependancies.package[$j].artifactId
+                $depend_version = $dependancies.package[$j].version
+                $depend_type = $dependancies.package[$j].type
+                $depend_repo = $dependancies.package[$j].repo
+            }
 
             Get-Package $depend_groupId $depend_artifactId $depend_version $depend_type $depend_repo $category
 
@@ -247,11 +248,19 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     if($numDependancies -gt 0) {
         $dependancies = $XmlDocument.packages.package[$i].dependancies
         for($j=0;$j -lt $numDependancies;$j++) {
-            $depend_groupId = $dependancies.package[$j].groupId
-            $depend_artifactId = $dependancies.package[$j].artifactId
-            $depend_version = $dependancies.package[$j].version
-            $depend_type = $dependancies.package[$j].type
-            $depend_repo = $dependancies.package[$j].repo
+            if($numDependancies -eq 1) {
+                $depend_groupId = $dependancies.package.groupId
+                $depend_artifactId = $dependancies.package.artifactId
+                $depend_version = $dependancies.package.version
+                $depend_type = $dependancies.package.type
+                $depend_repo = $dependancies.package.repo
+            } else {
+                $depend_groupId = $dependancies.package[$j].groupId
+                $depend_artifactId = $dependancies.package[$j].artifactId
+                $depend_version = $dependancies.package[$j].version
+                $depend_type = $dependancies.package[$j].type
+                $depend_repo = $dependancies.package[$j].repo
+            }
 
             if ($depend_type -eq "aar") {
                 Copy-Item -Path $currentDir\cache\$category\$depend_artifactId-$depend_version-res $currentDir\platforms\android -Force -Recurse
@@ -294,9 +303,21 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     if($numDependancies -gt 0) {
         $dependancies = $XmlDocument.packages.package[$i].dependancies
         for($j=0;$j -lt $numDependancies;$j++) {
-            $depend_artifactId = $dependancies.package[$j].artifactId
-            $depend_version = $dependancies.package[$j].version
-            $depend_type = $dependancies.package[$j].type
+            #$depend_artifactId = $dependancies.package[$j].artifactId
+            #$depend_version = $dependancies.package[$j].version
+            #$depend_type = $dependancies.package[$j].type
+
+            if($numDependancies -eq 1) {
+                $depend_artifactId = $dependancies.package.artifactId
+                $depend_version = $dependancies.package.version
+                $depend_type = $dependancies.package.type
+            } else {
+                $depend_artifactId = $dependancies.package[$j].artifactId
+                $depend_version = $dependancies.package[$j].version
+                $depend_type = $dependancies.package[$j].type
+            }
+
+
             if ($depend_type -eq "aar") {
                 Remove-Item $currentDir\platforms\android\$depend_artifactId-$depend_version-res -Recurse
             }
