@@ -5,8 +5,9 @@ Param(
 
 #Write-Host "package $package"
 
-$ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_26\bin\adt.bat"
+$ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_28\bin\adt.bat"
 $MAVEN_REPO = "https://repo1.maven.org/maven2/"
+$FABRIC_REPO = "https://maven.fabric.io/public/"
 $GOOGLE_REPO = "https://dl.google.com/dl/android/maven2/"
 $JCENTER_REPO ="https://jcenter.bintray.com/"
 $defaultResource = "<?xml version=`"1.0`" encoding=`"utf-8`"?><resources></resources>";
@@ -26,6 +27,8 @@ function Get-Package {
     if (-not (Test-Path $currentDir\cache\$category\$artifactId-$version.jar)) {
         if ($repo -eq "maven") {
             $repoUri = $MAVEN_REPO
+        }elseif ($repo -eq "fabric") {
+            $repoUri = $FABRIC_REPO
         }elseif ($repo -eq "google") {
             $repoUri = $GOOGLE_REPO
         }elseif ($repo -eq "jcenter") {
@@ -191,10 +194,13 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         New-Item -Path $jPath\DummyANE.java
     } 
 
+    echo "Write DummyANE.java"
     $javaContents = "package $groupId.$artifactIdSafe;public class DummyANE {}"
     Set-Content -Path $jPath\DummyANE.java -Value $javaContents
 
+    echo "gradlew clean"
     start-process "cmd.exe" "/c $currentDir..\..\..\native_library\android\gradlew.bat clean" -WorkingDirectory "$currentDir..\..\..\native_library\android" -Wait
+    echo "gradlew build"
     start-process "cmd.exe" "/c $currentDir..\..\..\native_library\android\gradlew.bat build" -WorkingDirectory "$currentDir..\..\..\native_library\android" -Wait 
 
     ##### BUILD ANE
@@ -290,6 +296,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
     #echo $ADT_STRING
+    echo "Building"
     start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -Wait
 
     echo "Cleaning up"
