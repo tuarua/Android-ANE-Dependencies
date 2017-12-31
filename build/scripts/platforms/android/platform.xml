@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
     <platform xmlns="http://ns.adobe.com/air/extension/19.0">
         <packagedDependencies>
-        <packagedDependency>firebase-analytics-11.4.2.jar</packagedDependency><packagedDependency>firebase-analytics-impl-11.4.2.jar</packagedDependency>
+        <packagedDependency>firebase-messaging-11.8.0.jar</packagedDependency>
     </packagedDependencies>
         <packagedResources>
             
         <packagedResource>
-            <packageName>com.google.firebase.analytics</packageName>
-            <folderName>firebase-analytics-11.4.2-res</folderName>
+            <packageName>com.google.firebase.messaging</packageName>
+            <folderName>firebase-messaging-11.8.0-res</folderName>
         </packagedResource>
-            <packagedResource>
-            <packageName>com.google.firebase.firebase-analytics-impl</packageName>
-            <folderName>firebase-analytics-impl-11.4.2-res</folderName>
-            </packagedResource>
             </packagedResources>
     </platform>

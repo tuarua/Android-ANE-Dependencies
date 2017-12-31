@@ -9,7 +9,7 @@
         <category>misc</category>
         <dependancies></dependancies>
     </package>
-	<package name="anko-commons">
+    <package name="anko-commons">
         <groupId>org.jetbrains.anko</groupId>
         <artifactId>anko-commons</artifactId>
         <version>0.10.1</version>
@@ -25,27 +25,6 @@
         <type>jar</type>
         <repo>maven</repo>
         <category>misc</category>
-        <dependancies></dependancies>
-    </package>
-    <!-- Firebase -->
-    <package name="firebase-common">
-        <groupId>com.google.firebase</groupId>
-        <packageName>com.google.firebase.common</packageName>
-        <artifactId>firebase-common</artifactId>
-        <version>11.4.2</version>
-        <type>aar</type>
-        <repo>google</repo>
-        <category>firebase</category>
-        <dependancies></dependancies>
-    </package>
-    <package name="firebase-iid">
-        <groupId>com.google.firebase</groupId>
-        <packageName>com.google.firebase.iid</packageName>
-        <artifactId>firebase-iid</artifactId>
-        <version>11.4.2</version>
-        <type>aar</type>
-        <repo>google</repo>
-        <category>firebase</category>
         <dependancies></dependancies>
     </package>
 
@@ -69,16 +48,37 @@
         <dependancies></dependancies>
     </package>
 
+    <!-- Firebase -->
+    <package name="firebase-common">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.common</packageName>
+        <artifactId>firebase-common</artifactId>
+        <version>11.8.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies></dependancies>
+    </package>
+    <package name="firebase-iid">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.iid</packageName>
+        <artifactId>firebase-iid</artifactId>
+        <version>11.8.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies></dependancies>
+    </package>
     <package name="firebase-firestore">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.firestore</packageName>
         <artifactId>firebase-firestore</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies>
-        	<package name="findbugs">
+            <package name="findbugs">
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
                 <version>1.3.9</version>
@@ -92,7 +92,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.auth</packageName>
         <artifactId>firebase-auth</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -104,7 +104,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.analytics</packageName>
         <artifactId>firebase-analytics</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -112,43 +112,94 @@
             <package name="firebase-analytics-impl">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-analytics-impl</artifactId>
-                <version>11.4.2</version>
+                <version>11.8.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         </dependancies>
     </package>
-
-
-     <package name="firebase-storage">
+    <package name="firebase-storage">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.storage</packageName>
         <artifactId>firebase-storage</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies>
-        	<package name="firebase-storage-common">
+            <package name="firebase-storage-common">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-storage-common</artifactId>
-                <version>11.4.2</version>
+                <version>11.8.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         </dependancies>
     </package>
-
     <package name="firebase-config">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.config</packageName>
         <artifactId>firebase-config</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies></dependancies>
     </package>
+
+
+    <!-- Crashlytics -->
+    <package name="firebase-crashlytics">
+        <groupId>com.crashlytics.sdk.android</groupId>
+        <artifactId>crashlytics</artifactId>
+        <version>2.7.1</version>
+        <type>aar</type>
+        <repo>fabric</repo>
+        <category>firebase</category>
+        <dependancies>
+            <package name="firebase-crashlytics-beta">
+                <groupId>com.crashlytics.sdk.android</groupId>
+                <artifactId>beta</artifactId>
+                <version>1.2.7</version>
+                <type>aar</type>
+                <repo>fabric</repo>
+            </package>
+            <package name="firebase-crashlytics-core">
+                <groupId>com.crashlytics.sdk.android</groupId>
+                <artifactId>crashlytics-core</artifactId>
+                <version>2.4.1</version>
+                <type>aar</type>
+                <repo>fabric</repo>
+            </package>
+            <package name="firebase-fabric">
+                <groupId>io.fabric.sdk.android</groupId>
+                <artifactId>fabric</artifactId>
+                <version>1.4.1</version>
+                <type>aar</type>
+                <repo>fabric</repo>
+            </package>
+            <package name="firebase-fabric">
+                <groupId>com.crashlytics.sdk.android</groupId>
+                <artifactId>answers</artifactId>
+                <version>1.4.1</version>
+                <type>aar</type>
+                <repo>fabric</repo>
+            </package>
+        </dependancies>
+    </package>
+
+    <package name="firebase-messaging">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.messaging</packageName>
+        <artifactId>firebase-messaging</artifactId>
+        <version>11.8.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies></dependancies>
+    </package>
+
+
 
     <!-- Support -->
     <package name="support-design">
@@ -160,7 +211,7 @@
         <repo>google</repo>
         <category>support</category>
         <dependancies>
-           <package name="transition">
+            <package name="transition">
                 <groupId>com.android.support</groupId>
                 <artifactId>transition</artifactId>
                 <version>25.4.0</version>
@@ -174,7 +225,7 @@
                 <type>aar</type>
                 <repo>google</repo>
             </package>
-       </dependancies>
+        </dependancies>
     </package>
     <package name="appcompat-v7">
         <groupId>com.android.support</groupId>
@@ -200,7 +251,7 @@
                 <repo>google</repo>
             </package>
         </dependancies>
-    </package> 
+    </package>
     <package name="support-v4">
         <groupId>com.android.support</groupId>
         <artifactId>support-v4</artifactId>
@@ -258,7 +309,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -266,7 +317,7 @@
     <package name="play-services-base">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-base</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -274,50 +325,24 @@
             <package name="play-services-basement">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-basement</artifactId>
-                <version>11.4.2</version>
+                <version>11.8.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-tasks">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-tasks</artifactId>
-                <version>11.4.2</version>
+                <version>11.8.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         </dependancies>
     </package>
 
-    <!-- <package name="play-services-analytics">
-        <groupId>com.google.android.gms</groupId>
-        <artifactId>play-services-analytics</artifactId>
-        <version>11.4.2</version>
-        <type>aar</type>
-        <repo>google</repo>
-        <category>play-services</category>
-        <dependancies>
-            <package name="play-services-analytics-impl">
-                <groupId>com.google.android.gms</groupId>
-                <artifactId>play-services-analytics-impl</artifactId>
-                <version>11.4.2</version>
-                <type>aar</type>
-                <repo>google</repo>
-            </package>
-            <package name="play-services-tagmanager-v4-impl">
-                <groupId>com.google.android.gms</groupId>
-                <artifactId>play-services-tagmanager-v4-impl</artifactId>
-                <version>11.4.2</version>
-                <type>aar</type>
-                <repo>google</repo>
-            </package>
-        </dependancies>
-    </package> -->
-
-
     <package name="play-services-location">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-location</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -326,7 +351,7 @@
     <package name="play-services-maps">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-maps</artifactId>
-        <version>11.4.2</version>
+        <version>11.8.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension xmlns="http://ns.adobe.com/air/extension/19.0">
-    <id>com.google.firebase.firebase-analytics</id>
-    <name>firebase-analytics</name>
+    <id>com.google.firebase.firebase-messaging</id>
+    <name>firebase-messaging</name>
     <copyright></copyright>
-    <versionNumber>11.4.2</versionNumber>
+    <versionNumber>11.8.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment>
