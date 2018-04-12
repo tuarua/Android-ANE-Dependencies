@@ -5,7 +5,7 @@ Param(
 
 #Write-Host "package $package"
 
-$ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_28\bin\adt.bat"
+$ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_29\bin\adt.bat"
 $MAVEN_REPO = "https://repo1.maven.org/maven2/"
 $FABRIC_REPO = "https://maven.fabric.io/public/"
 $GOOGLE_REPO = "https://dl.google.com/dl/android/maven2/"
@@ -199,9 +199,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     Set-Content -Path $jPath\DummyANE.java -Value $javaContents
 
     echo "gradlew clean"
-    start-process "cmd.exe" "/c $currentDir..\..\..\native_library\android\gradlew.bat clean" -WorkingDirectory "$currentDir..\..\..\native_library\android" -Wait
+    $process = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","clean" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
+    Wait-Process -InputObject $process
+
     echo "gradlew build"
-    start-process "cmd.exe" "/c $currentDir..\..\..\native_library\android\gradlew.bat build" -WorkingDirectory "$currentDir..\..\..\native_library\android" -Wait 
+    $process2 = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","build" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
+    Wait-Process -InputObject $process2
 
     ##### BUILD ANE
     echo "Building ANE $groupId.$artifactId-$version.ane"
@@ -297,7 +300,8 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
     #echo $ADT_STRING
     echo "Building"
-    start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -Wait
+    $process3 = start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
+    Wait-Process -InputObject $process3
 
     echo "Cleaning up"
 
