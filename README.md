@@ -5,7 +5,7 @@ Build Android dependencies for Adobe AIR ANEs
 -------------
 
 ## Precompiled libraries
-A set of precompiled ANEs are [available here](/tree/master/anes) This includes Google Play Services and Android Support libraries
+A set of precompiled ANEs are [available here](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/anes) This includes Google Play Services and Android Support libraries
 
 ## Compiling your own libaries
 
@@ -15,7 +15,7 @@ You will need:
 - AIR 29 SDK
 - Powershell
 
-Packages are described in [packages.xml](/tree/master/build/scripts/packages.xml)   
+Packages are described in [packages.xml](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/build/scripts/packages.xml)   
 The format follows closely the maven package descriptor   
 Packages can be loaded from jcenter|maven|google 
 
