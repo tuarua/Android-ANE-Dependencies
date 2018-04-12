@@ -16,7 +16,7 @@ You will need:
 - Powershell
 
 Packages are described in [packages.xml](/tree/master/build/scripts/packages.xml)   
-The format follows closely the maven package descriptor
+The format follows closely the maven package descriptor   
 Packages can be loaded from jcenter|maven|google 
 
 Build single package
