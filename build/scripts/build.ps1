@@ -3,26 +3,31 @@ Param(
 [string] $package
 )
 
-#Write-Host "package $package"
-
-$ADT_PATH ="D:\dev\sdks\AIR\AIRSDK_29\bin\adt.bat"
+$currentDir = (Get-Item -Path ".\" -Verbose).FullName
+$AIR_SDK = Get-Content "$currentDir\airsdk.config"
+$ADT_PATH = "$AIR_SDK\bin\adt.bat"
 $MAVEN_REPO = "https://repo1.maven.org/maven2/"
 $FABRIC_REPO = "https://maven.fabric.io/public/"
 $GOOGLE_REPO = "https://dl.google.com/dl/android/maven2/"
 $JCENTER_REPO ="https://jcenter.bintray.com/"
 $defaultResource = "<?xml version=`"1.0`" encoding=`"utf-8`"?><resources></resources>";
 
+if (-not (Test-Path $ADT_PATH)) {
+    Write-Error "Please set AIR SDK path in airsdk.config"
+    Exit;
+}
+
+Write-Host "Using AIR SDK $ADT_PATH" -ForegroundColor yellow
+
 
 if (-not (Test-Path $currentDir\cache)) {
     New-Item -Path $currentDir\cache
 }
 
-$currentDir = (Get-Item -Path ".\" -Verbose).FullName
-
 
 function Get-Package {
     param( [string]$groupId, [string]$artifactId, [string]$version, [string]$type, [string]$repo, [string]$category )
-    echo "Getting package for $artifactId"
+    Write-Host "Getting package for $artifactId" -ForegroundColor yellow
     $groupIdPath = $groupId -replace "\.", "/"
     if (-not (Test-Path $currentDir\cache\$category\$artifactId-$version.jar)) {
         if ($repo -eq "maven") {
@@ -35,7 +40,7 @@ function Get-Package {
             $repoUri = $JCENTER_REPO
         }
 
-        echo "Downloading $repoUri$groupIdPath/$artifactId/$version/$artifactId-$version.$type -OutFile $currentDir\cache\$category\$artifactId-$version.$type"
+        Write-Host "Downloading $repoUri$groupIdPath/$artifactId/$version/$artifactId-$version.$type -OutFile $currentDir\cache\$category\$artifactId-$version.$type" -ForegroundColor yellow
 
         Invoke-WebRequest -Uri $repoUri$groupIdPath/$artifactId/$version/$artifactId-$version.$type -OutFile $currentDir\cache\$category\$artifactId-$version.$type
 
@@ -194,20 +199,20 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         New-Item -Path $jPath\DummyANE.java
     } 
 
-    echo "Write DummyANE.java"
+    Write-Host "Write DummyANE.java" -ForegroundColor yellow
     $javaContents = "package $groupId.$artifactIdSafe;public class DummyANE {}"
     Set-Content -Path $jPath\DummyANE.java -Value $javaContents
 
-    echo "gradlew clean"
+    Write-Host "gradlew clean" -ForegroundColor yellow
     $process = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","clean" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
     Wait-Process -InputObject $process
 
-    echo "gradlew build"
+    Write-Host "gradlew build" -ForegroundColor yellow
     $process2 = Start-Process -FilePath "cmd.exe" -ArgumentList "/c", "$currentDir..\..\..\native_library\android\gradlew.bat","build" -WorkingDirectory "$currentDir..\..\..\native_library\android" -windowstyle Hidden -PassThru
     Wait-Process -InputObject $process2
 
     ##### BUILD ANE
-    echo "Building ANE $groupId.$artifactId-$version.ane"
+    Write-Host "Building ANE $groupId.$artifactId-$version.ane" -ForegroundColor yellow
 
     Copy-Item -Path "$currentDir\..\bin\DummyANE.swc" -Destination "$currentDir\DummyANE.swc" -Force
     Copy-Item -Path "$currentDir\DummyANE.swc" -Destination "$currentDir\DummyANEExtract.swc" -Force
@@ -221,13 +226,15 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     
     
     if ($type -eq "aar") {
-        Copy-Item -Path $currentDir\cache\$category\$artifactId-$version-res $currentDir\platforms\android -Force -Recurse
+        if ((Test-Path "$currentDir\cache\$category\$artifactId-$version-res")) {
+            Copy-Item -Path $currentDir\cache\$category\$artifactId-$version-res $currentDir\platforms\android -Force -Recurse
+        }
 
-        Write-Host "copying res to $currentDir\platforms\android\$artifactId-$version-res"
+        Write-Host "copying res to $currentDir\platforms\android\$artifactId-$version-res" -ForegroundColor yellow
 
         if (-not (Test-Path "$currentDir\platforms\android\$artifactId-$version-res\values")) {
 
-            Write-Host "need to write new strings $currentDir\platforms\android\$artifactId-$version-res\values\strings.xml"
+            Write-Host "need to write new strings $currentDir\platforms\android\$artifactId-$version-res\values\strings.xml" -ForegroundColor yellow
 
             New-Item -Path $currentDir\platforms\android\$artifactId-$version-res\values -ItemType "directory"
             New-Item -Path $currentDir\platforms\android\$artifactId-$version-res\values\strings.xml
@@ -298,12 +305,11 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
-    #echo $ADT_STRING
-    echo "Building"
+    Write-Host "Building" -ForegroundColor yellow
     $process3 = start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
     Wait-Process -InputObject $process3
 
-    echo "Cleaning up"
+    Write-Host "Cleaning up" -ForegroundColor yellow
 
     if ($type -eq "aar") {
         Remove-Item $currentDir\platforms\android\$artifactId-$version-res -Recurse
@@ -342,6 +348,6 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     Remove-Item $currentDir\catalog.xml
     Remove-Item $currentDir\DummyANE.swc
 
-    echo "Finished"
+    Write-Host "Finished" -ForegroundColor green
 
 }

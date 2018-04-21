@@ -17,7 +17,9 @@ You will need:
 
 Packages are described in [packages.xml](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/build/scripts/packages.xml)   
 The format follows closely the maven package descriptor   
-Packages can be loaded from jcenter|maven|google 
+Packages can be loaded from jcenter | maven | google   
+
+Update AIR SDK path in [airsdk.config](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/build/scripts/airsdk.config)  
 
 Build single package
 ````shell
