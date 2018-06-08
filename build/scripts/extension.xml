@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension xmlns="http://ns.adobe.com/air/extension/19.0">
-    <id>com.android.support.design</id>
-    <name>design</name>
+    <id>com.google.firebase.firebase-perf</id>
+    <name>firebase-perf</name>
     <copyright></copyright>
-    <versionNumber>27.1.0</versionNumber>
+    <versionNumber>15.0.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment>

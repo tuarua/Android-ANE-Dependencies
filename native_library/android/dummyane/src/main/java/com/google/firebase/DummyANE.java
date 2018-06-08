@@ -1,1 +1,1 @@
-package com.google.firebase.firebase_messaging;public class DummyANE {}
+package com.google.firebase.firebase_perf;public class DummyANE {}

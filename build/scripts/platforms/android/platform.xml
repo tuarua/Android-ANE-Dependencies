@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
     <platform xmlns="http://ns.adobe.com/air/extension/19.0">
         <packagedDependencies>
-        <packagedDependency>design-27.1.0.jar</packagedDependency><packagedDependency>transition-27.1.0.jar</packagedDependency><packagedDependency>recyclerview-v7-27.1.0.jar</packagedDependency>
+        <packagedDependency>firebase-perf-15.0.0.jar</packagedDependency>
     </packagedDependencies>
         <packagedResources>
             
         <packagedResource>
-            <packageName>android.support.design</packageName>
-            <folderName>design-27.1.0-res</folderName>
+            <packageName>com.google.firebase.perf</packageName>
+            <folderName>firebase-perf-15.0.0-res</folderName>
         </packagedResource>
-            <packagedResource>
-            <packageName>com.android.support.transition</packageName>
-            <folderName>transition-27.1.0-res</folderName>
-            </packagedResource>
-            <packagedResource>
-            <packageName>com.android.support.recyclerview-v7</packageName>
-            <folderName>recyclerview-v7-27.1.0-res</folderName>
-            </packagedResource>
             </packagedResources>
     </platform>
