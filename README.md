@@ -26,7 +26,11 @@ Build single package
 .\build.ps1 -package eventbus
 `````
 
-Example package
+
+
+Example package  
+https://mvnrepository.com/artifact/org.greenrobot/eventbus/3.0.0
+
 ````xml
 <package name="eventbus">
     <groupId>org.greenrobot</groupId>
@@ -39,28 +43,24 @@ Example package
 </package>
 `````
 
-Example package with child dependencies
+
+Example package with child dependencies    
+https://mvnrepository.com/artifact/com.google.firebase/firebase-config/16.0.0
+
 ````xml
-<package name="support-design">
-    <groupId>com.android.support</groupId>
-    <packageName>android.support.design</packageName>
-    <artifactId>design</artifactId>
-    <version>27.1.0</version>
+<package name="firebase-config">
+    <groupId>com.google.firebase</groupId>
+    <packageName>com.google.firebase.config</packageName>
+    <artifactId>firebase-config</artifactId>
+    <version>16.0.0</version>
     <type>aar</type>
     <repo>google</repo>
-    <category>support</category>
+    <category>firebase</category>
     <dependancies>
-        <package name="transition">
-            <groupId>com.android.support</groupId>
-            <artifactId>transition</artifactId>
-            <version>27.1.0</version>
-            <type>aar</type>
-            <repo>google</repo>
-        </package>
-        <package name="recyclerview-v7">
-            <groupId>com.android.support</groupId>
-            <artifactId>recyclerview-v7</artifactId>
-            <version>27.1.0</version>
+        <package name="firebase-abt">
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-abt</artifactId>
+            <version>16.0.0</version>
             <type>aar</type>
             <repo>google</repo>
         </package>

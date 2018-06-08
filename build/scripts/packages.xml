@@ -35,7 +35,15 @@
         <type>jar</type>
         <repo>maven</repo>
         <category>misc</category>
-        <dependancies></dependancies>
+        <dependancies>
+            <package name="okio">
+                <groupId>com.squareup.okio</groupId>
+                <artifactId>okio</artifactId>
+                <version>1.6.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+        </dependancies>
     </package>
 
     <package name="guava">
@@ -46,42 +54,134 @@
         <repo>maven</repo>
         <category>misc</category>
         <dependancies></dependancies>
+
     </package>
 
     <!-- Firebase -->
-    <package name="firebase-common">
-        <groupId>com.google.firebase</groupId>
-        <packageName>com.google.firebase.common</packageName>
-        <artifactId>firebase-common</artifactId>
-        <version>11.8.0</version>
-        <type>aar</type>
-        <repo>google</repo>
-        <category>firebase</category>
-        <dependancies></dependancies>
-    </package>
+
     <package name="firebase-iid">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.iid</packageName>
         <artifactId>firebase-iid</artifactId>
-        <version>11.8.0</version>
-        <type>aar</type>
-        <repo>google</repo>
-        <category>firebase</category>
-        <dependancies></dependancies>
-    </package>
-    <package name="firebase-firestore">
-        <groupId>com.google.firebase</groupId>
-        <packageName>com.google.firebase.firestore</packageName>
-        <artifactId>firebase-firestore</artifactId>
-        <version>11.8.0</version>
+        <version>16.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies>
+            <package name="firebase-iid-interop">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-iid-interop</artifactId>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
+
+    <package name="firebase-firestore">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.firestore</packageName>
+        <artifactId>firebase-firestore</artifactId>
+        <version>17.0.1</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies>
+            <package name="android.arch.lifecycle">
+                <groupId>android.arch.lifecycle</groupId>
+                <artifactId>runtime</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-database-collection">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-database-collection</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="protolite-well-known-types">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>protolite-well-known-types</artifactId>
+                <version>15.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="protobuf-lite">
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-lite</artifactId>
+                <version>3.0.1</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="grpc-stub">
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>1.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="grpc-core">
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-core</artifactId>
+                <version>1.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="grpc-context">
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-context</artifactId>
+                <version>1.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
             <package name="findbugs">
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
-                <version>1.3.9</version>
+                <version>3.0.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="error_prone_annotations">
+                <groupId>com.google.errorprone</groupId>
+                <artifactId>error_prone_annotations</artifactId>
+                <version>2.0.19</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="instrumentation-api">
+                <groupId>com.google.instrumentation</groupId>
+                <artifactId>instrumentation-api</artifactId>
+                <version>0.4.3</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="opencensus-api">
+                <groupId>io.opencensus</groupId>
+                <artifactId>opencensus-api</artifactId>
+                <version>0.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="opencensus-api">
+                <groupId>io.opencensus</groupId>
+                <artifactId>opencensus-contrib-grpc-metrics</artifactId>
+                <version>0.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="grpc-okhttp">
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-okhttp</artifactId>
+                <version>1.8.0</version>
+                <type>jar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="grpc-protobuf-lite">
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf-lite</artifactId>
+                <version>1.8.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
@@ -92,19 +192,26 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.auth</packageName>
         <artifactId>firebase-auth</artifactId>
-        <version>11.8.0</version>
+        <version>16.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
-        <dependancies></dependancies>
+        <dependancies>
+            <package name="firebase-auth-interop">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-auth-interop</artifactId>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
     </package>
-
 
     <package name="firebase-analytics">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.analytics</packageName>
         <artifactId>firebase-analytics</artifactId>
-        <version>11.8.0</version>
+        <version>16.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -112,17 +219,40 @@
             <package name="firebase-analytics-impl">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-analytics-impl</artifactId>
-                <version>11.8.0</version>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-measurement-connector">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-measurement-connector</artifactId>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-measurement-connector-impl">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-measurement-connector-impl</artifactId>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-common">
+                <groupId>com.google.firebase</groupId>
+                <packageName>com.google.firebase.common</packageName>
+                <artifactId>firebase-common</artifactId>
+                <version>16.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         </dependancies>
     </package>
+
     <package name="firebase-storage">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.storage</packageName>
         <artifactId>firebase-storage</artifactId>
-        <version>11.8.0</version>
+        <version>16.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -130,60 +260,38 @@
             <package name="firebase-storage-common">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-storage-common</artifactId>
-                <version>11.8.0</version>
+                <version>16.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         </dependancies>
     </package>
-    <package name="firebase-config">
+
+    <package name="firebase-dynamic-links">
         <groupId>com.google.firebase</groupId>
-        <packageName>com.google.firebase.config</packageName>
-        <artifactId>firebase-config</artifactId>
-        <version>11.8.0</version>
+        <artifactId>firebase-dynamic-links</artifactId>
+        <version>16.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies></dependancies>
     </package>
 
-
-    <!-- Crashlytics -->
-    <package name="firebase-crashlytics">
-        <groupId>com.crashlytics.sdk.android</groupId>
-        <artifactId>crashlytics</artifactId>
-        <version>2.7.1</version>
+    <package name="firebase-config">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.config</packageName>
+        <artifactId>firebase-config</artifactId>
+        <version>16.0.0</version>
         <type>aar</type>
-        <repo>fabric</repo>
+        <repo>google</repo>
         <category>firebase</category>
         <dependancies>
-            <package name="firebase-crashlytics-beta">
-                <groupId>com.crashlytics.sdk.android</groupId>
-                <artifactId>beta</artifactId>
-                <version>1.2.7</version>
+            <package name="firebase-abt">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-abt</artifactId>
+                <version>16.0.0</version>
                 <type>aar</type>
-                <repo>fabric</repo>
-            </package>
-            <package name="firebase-crashlytics-core">
-                <groupId>com.crashlytics.sdk.android</groupId>
-                <artifactId>crashlytics-core</artifactId>
-                <version>2.4.1</version>
-                <type>aar</type>
-                <repo>fabric</repo>
-            </package>
-            <package name="firebase-fabric">
-                <groupId>io.fabric.sdk.android</groupId>
-                <artifactId>fabric</artifactId>
-                <version>1.4.1</version>
-                <type>aar</type>
-                <repo>fabric</repo>
-            </package>
-            <package name="firebase-fabric">
-                <groupId>com.crashlytics.sdk.android</groupId>
-                <artifactId>answers</artifactId>
-                <version>1.4.1</version>
-                <type>aar</type>
-                <repo>fabric</repo>
+                <repo>google</repo>
             </package>
         </dependancies>
     </package>
@@ -192,14 +300,24 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.messaging</packageName>
         <artifactId>firebase-messaging</artifactId>
-        <version>11.8.0</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies></dependancies>
     </package>
 
-
+    <!-- Performance 16 causes crash -->
+    <package name="firebase-perf">
+        <groupId>com.google.firebase</groupId>
+        <packageName>com.google.firebase.perf</packageName>
+        <artifactId>firebase-perf</artifactId>
+        <version>15.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies></dependancies>
+    </package>
 
     <!-- Support -->
     <package name="support-design">
@@ -310,30 +428,91 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>11.8.0</version>
+        <version>15.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
+        <dependancies>
+            <package name="play-services-ads-base">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-ads-base</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
     </package>
+
     <package name="play-services-base">
         <groupId>com.google.android.gms</groupId>
+        <packageName>com.google.android.gms.common</packageName>
         <artifactId>play-services-base</artifactId>
-        <version>11.8.0</version>
+        <version>15.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
         <dependancies>
             <package name="play-services-basement">
                 <groupId>com.google.android.gms</groupId>
+                <packageName>com.google.android.gms</packageName>
                 <artifactId>play-services-basement</artifactId>
-                <version>11.8.0</version>
+                <version>15.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-tasks">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-tasks</artifactId>
-                <version>11.8.0</version>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-flags">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-flags</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-measurement-base">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-measurement-base</artifactId>
+                <version>15.0.4</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-stats">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-stats</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-phenotype">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-phenotype</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-clearcut">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-clearcut</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-iid">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-iid</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-ads-identifier">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-ads-identifier</artifactId>
+                <version>15.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -343,7 +522,7 @@
     <package name="play-services-location">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-location</artifactId>
-        <version>11.8.0</version>
+        <version>15.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -352,10 +531,108 @@
     <package name="play-services-maps">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-maps</artifactId>
-        <version>11.8.0</version>
+        <version>15.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
         <dependancies></dependancies>
     </package>
+
+    <package name="play-services-auth">
+        <groupId>com.google.android.gms</groupId>
+        <packageName>com.google.android.gms.auth</packageName>
+        <artifactId>play-services-auth</artifactId>
+        <version>15.0.1</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
+        <dependancies>
+            <package name="play-services-auth-base">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-auth-base</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-auth-api-phone">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-auth-api-phone</artifactId>
+                <version>15.0.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
+
+
+    <!-- Exo Player -->
+
+
+    <package name="exoplayer-core">
+        <groupId>com.google.android.exoplayer</groupId>
+        <artifactId>exoplayer-core</artifactId>
+        <version>2.7.1</version>
+        <type>aar</type>
+        <repo>jcenter</repo>
+        <category>misc</category>
+    </package>
+
+    <package name="exoplayer-ui">
+        <groupId>com.google.android.exoplayer</groupId>
+        <packageName>com.google.android.exoplayer2.ui</packageName>
+        <artifactId>exoplayer-ui</artifactId>
+        <version>2.7.1</version>
+        <type>aar</type>
+        <repo>jcenter</repo>
+        <category>misc</category>
+    </package>
+
+
+    <!--
+        <package name="exoplayer">
+            <groupId>com.google.android.exoplayer</groupId>
+            <artifactId>exoplayer</artifactId>
+            <version>2.7.1</version>
+            <type>aar</type>
+            <repo>jcenter</repo>
+            <category>misc</category>
+            <dependancies>
+                <package name="exoplayer-core">
+                    <groupId>com.google.android.exoplayer</groupId>
+                    <artifactId>exoplayer-core</artifactId>
+                    <version>2.7.1</version>
+                    <type>aar</type>
+                    <repo>jcenter</repo>
+                </package>
+                <package name="exoplayer-dash">
+                    <groupId>com.google.android.exoplayer</groupId>
+                    <artifactId>exoplayer-dash</artifactId>
+                    <version>2.7.1</version>
+                    <type>aar</type>
+                    <repo>jcenter</repo>
+                </package>
+                <package name="exoplayer-hls">
+                    <groupId>com.google.android.exoplayer</groupId>
+                    <artifactId>exoplayer-hls</artifactId>
+                    <version>2.7.1</version>
+                    <type>aar</type>
+                    <repo>jcenter</repo>
+                </package>
+                <package name="exoplayer-smoothstreaming">
+                    <groupId>com.google.android.exoplayer</groupId>
+                    <artifactId>exoplayer-smoothstreaming</artifactId>
+                    <version>2.7.1</version>
+                    <type>aar</type>
+                    <repo>jcenter</repo>
+                </package>
+                <package name="exoplayer-ui">
+                    <groupId>com.google.android.exoplayer</groupId>
+                    <artifactId>exoplayer-ui</artifactId>
+                    <version>2.7.1</version>
+                    <type>aar</type>
+                    <repo>jcenter</repo>
+                </package>
+            </dependancies>
+        </package>
+    -->
 </packages>

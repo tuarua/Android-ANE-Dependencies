@@ -48,9 +48,13 @@ function Get-Package {
             Rename-Item -NewName $currentDir\cache\$category\$artifactId-$version.zip -Path $currentDir\cache\$category\$artifactId-$version.aar
             Expand-Archive -Path $currentDir\cache\$category\$artifactId-$version.zip -DestinationPath $currentDir\cache\$category\$artifactId-$version
             Remove-Item -Path $currentDir\cache\$category\$artifactId-$version.zip
-            Rename-Item -NewName $currentDir\cache\$category\$artifactId-$version\$artifactId-$version-res -Path $currentDir\cache\$category\$artifactId-$version\res
+            if ((Test-Path $currentDir\cache\$category\$artifactId-$version\res)) {
+                Rename-Item -NewName $currentDir\cache\$category\$artifactId-$version\$artifactId-$version-res -Path $currentDir\cache\$category\$artifactId-$version\res
+            }
             Rename-Item -NewName $currentDir\cache\$category\$artifactId-$version\$artifactId-$version.jar -Path $currentDir\cache\$category\$artifactId-$version\classes.jar
-            Move-Item -Path $currentDir\cache\$category\$artifactId-$version\$artifactId-$version-res -Destination $currentDir\cache\$category\$artifactId-$version-res
+            if ((Test-Path $currentDir\cache\$category\$artifactId-$version\$artifactId-$version-res)) {
+                Move-Item -Path $currentDir\cache\$category\$artifactId-$version\$artifactId-$version-res -Destination $currentDir\cache\$category\$artifactId-$version-res
+            }
             Move-Item -Path $currentDir\cache\$category\$artifactId-$version\$artifactId-$version.jar -Destination $currentDir\cache\$category\$artifactId-$version.jar
             Remove-Item -Path $currentDir\cache\$category\$artifactId-$version -Recurse
         }
@@ -122,14 +126,19 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                 $depend_type = $dependancies.package[$j].type
                 $depend_repo = $dependancies.package[$j].repo
             }
-
+            $depend_packageName = "$depend_groupId.$depend_artifactId"
+            
             Get-Package $depend_groupId $depend_artifactId $depend_version $depend_type $depend_repo $category
+
+            if($dependancies.package[$j].packageName) {
+                $depend_packageName = $dependancies.package[$j].packageName
+            }
 
             $packagedDependencyLoops += "<packagedDependency>$depend_artifactId-$depend_version.jar</packagedDependency>"
             if ($depend_type -eq "aar") {
             $packagedResourceLoops += "
             <packagedResource>
-            <packageName>$depend_groupId.$depend_artifactId</packageName>
+            <packageName>$depend_packageName</packageName>
             <folderName>$depend_artifactId-$depend_version-res</folderName>
             </packagedResource>"
             }
@@ -279,7 +288,10 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             }
 
             if ($depend_type -eq "aar") {
-                Copy-Item -Path $currentDir\cache\$category\$depend_artifactId-$depend_version-res $currentDir\platforms\android -Force -Recurse
+                if ((Test-Path $currentDir\cache\$category\$depend_artifactId-$depend_version-res)) {
+                    Copy-Item -Path $currentDir\cache\$category\$depend_artifactId-$depend_version-res $currentDir\platforms\android -Force -Recurse
+                }
+                
 
                 if (-not (Test-Path "$currentDir\platforms\android\$depend_artifactId-$depend_version-res\values")) {
                     New-Item -Path $currentDir\platforms\android\$depend_artifactId-$depend_version-res\values -ItemType "directory"
