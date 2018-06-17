@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension xmlns="http://ns.adobe.com/air/extension/19.0">
-    <id>com.google.firebase.firebase-perf</id>
-    <name>firebase-perf</name>
+    <id>com.google.firebase.firebase-invites</id>
+    <name>firebase-invites</name>
     <copyright></copyright>
-    <versionNumber>15.0.0</versionNumber>
+    <versionNumber>16.0.0</versionNumber>
     <platforms>
         <platform name="Android-ARM">
             <applicationDeployment>
