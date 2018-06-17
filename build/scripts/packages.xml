@@ -78,6 +78,59 @@
         </dependancies>
     </package>
 
+    <package name="arch-lifecycle">
+    	<groupId>android.arch.lifecycle</groupId>
+        <artifactId>runtime</artifactId>
+        <version>1.1.1</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
+        <dependancies>
+        	<package name="android-arch-lifecycle-common">
+        		<groupId>android.arch.lifecycle</groupId>
+    			<artifactId>common</artifactId>
+                <version>1.1.1</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="android-arch-core-common">
+        		<groupId>android.arch.core</groupId>
+    			<artifactId>common</artifactId>
+    			<version>1.1.1</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="android-arch-core-runtime">
+        		<groupId>android.arch.core</groupId>
+    			<artifactId>runtime</artifactId>
+    			<version>1.1.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="android-arch-lifecycle-viewmodel">
+        		<groupId>android.arch.lifecycle</groupId>
+    			<artifactId>viewmodel</artifactId>
+    			<version>1.1.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="android-arch-lifecycle-livedata">
+        		<groupId>android.arch.lifecycle</groupId>
+    			<artifactId>livedata</artifactId>
+    			<version>1.1.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="android-arch-lifecycle-livedata-core">
+        		<groupId>android.arch.lifecycle</groupId>
+    			<artifactId>livedata-core</artifactId>
+    			<version>1.1.1</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
+
     <package name="firebase-firestore">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.firestore</packageName>
@@ -87,13 +140,6 @@
         <repo>google</repo>
         <category>firebase</category>
         <dependancies>
-            <package name="android.arch.lifecycle">
-                <groupId>android.arch.lifecycle</groupId>
-                <artifactId>runtime</artifactId>
-                <version>1.0.0</version>
-                <type>aar</type>
-                <repo>google</repo>
-            </package>
             <package name="firebase-database-collection">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-database-collection</artifactId>
@@ -269,12 +315,31 @@
 
     <package name="firebase-dynamic-links">
         <groupId>com.google.firebase</groupId>
-        <artifactId>firebase-dynamic-links</artifactId>
-        <version>16.0.0</version>
+    	<artifactId>firebase-invites</artifactId>
+    	<version>16.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies></dependancies>
+    </package>
+
+    <package name="firebase-invites">
+        <groupId>com.google.firebase</groupId>
+    	<artifactId>firebase-invites</artifactId>
+    	<version>16.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies>
+        	<package name="play-services-appinvite">
+                <groupId>com.google.android.gms</groupId>
+                <packageName>com.google.android.gms.appinvite</packageName>
+    			<artifactId>play-services-appinvite</artifactId>
+    			<version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
     </package>
 
     <package name="firebase-config">
