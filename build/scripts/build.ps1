@@ -2,7 +2,7 @@ Param(
 [Parameter(Mandatory=$false)]
 [string] $package
 )
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 #################### Cmdlets ##################
 function Get-Package {
     param( [string]$groupId, [string]$artifactId, [string]$version, [string]$type, [string]$repo, [string]$category )
