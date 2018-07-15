@@ -18,10 +18,11 @@
         <category>kotlin</category>
         <dependancies></dependancies>
     </package>
+
     <package name="gson">
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
-        <version>2.8.1</version>
+        <version>2.8.4</version>
         <type>jar</type>
         <repo>maven</repo>
         <category>misc</category>
@@ -384,6 +385,65 @@
         <dependancies></dependancies>
     </package>
 
+    <!-- Vision -->
+    <package name="firebase-ml-model-interpreter">
+        <groupId>com.google.firebase</groupId>
+        <artifactId>firebase-ml-model-interpreter</artifactId>
+        <version>16.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies>
+            <package name="tensorflow-lite">
+                <groupId>org.tensorflow</groupId>
+                <artifactId>tensorflow-lite</artifactId>
+                <version>0.1.7</version>
+                <type>aar</type>
+                <repo>spring</repo>
+            </package>
+        </dependancies>
+    </package>
+
+
+    <package name="firebase-ml-vision">
+        <groupId>com.google.firebase</groupId>
+        <artifactId>firebase-ml-vision</artifactId>
+        <version>16.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>firebase</category>
+        <dependancies>
+            <package name="play-services-vision">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-vision</artifactId>
+                <version>15.0.2</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-vision-common">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-vision-common</artifactId>
+                <version>15.0.2</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="play-services-vision-image-label">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-vision-image-label</artifactId>
+                <version>15.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-ml-common">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-ml-common</artifactId>
+                <version>16.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
+
     <!-- Support -->
     <package name="support-design">
         <groupId>com.android.support</groupId>
@@ -489,6 +549,17 @@
     </package>
 
     <!-- Play Services -->
+
+    <package name="consent-library">
+        <groupId>com.google.android.ads.consent</groupId>
+        <artifactId>consent-library</artifactId>
+        <version>1.0.6</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
+        <dependancies></dependancies>
+    </package>
+
     <package name="play-services-ads-lite">
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
