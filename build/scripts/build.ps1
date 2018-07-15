@@ -21,6 +21,8 @@ function Get-Package {
             $repoUri = $GOOGLE_REPO
         }elseif ($repo -eq "jcenter") {
             $repoUri = $JCENTER_REPO
+        }elseif ($repo -eq "spring") {
+            $repoUri = $SPRNG_REPO
         }
 
         if (-not (Test-Path $packageDirectory)) {
@@ -44,6 +46,13 @@ function Get-Package {
 
             if ((Test-Path $packageDirectory\$packageName\res)) {
                 Move-Item -Path $packageDirectory\$packageName\res -Destination $currentDir\cache\$category\$groupId-$packageName-res
+            }
+
+            if ((Test-Path $packageDirectory\$packageName\jni)) {
+                if ((Test-Path $currentDir\cache\$category\$groupId-$packageName-jni)) {
+                    Remove-Item -Path $currentDir\cache\$category\$groupId-$packageName-jni -Recurse
+                }
+                Move-Item -Path $packageDirectory\$packageName\jni -Destination $currentDir\cache\$category\$groupId-$packageName-jni -Force
             }
             
             Remove-Item -Path $packageDirectory\$packageName -Recurse
@@ -77,6 +86,7 @@ $MAVEN_REPO = "https://repo1.maven.org/maven2/"
 $FABRIC_REPO = "https://maven.fabric.io/public/"
 $GOOGLE_REPO = "https://dl.google.com/dl/android/maven2/"
 $JCENTER_REPO ="https://jcenter.bintray.com/"
+$SPRNG_REPO = "http://repo.spring.io/libs-release/"
 $defaultResource = "<?xml version=`"1.0`" encoding=`"utf-8`"?><resources></resources>";
 
 if (-not (Test-Path $ADT_PATH)) {
@@ -121,7 +131,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $packagedResourceLoops = ""
     $packagedDependencies = ""
     $packagedDependencyLoops = ""
-    $packagedDependencyLoops = "<packagedDependency>$groupId-$artifactId-$version.jar</packagedDependency>" ##TODO jar here
+    $packagedDependencyLoops = "<packagedDependency>$groupId-$artifactId-$version.jar</packagedDependency>" 
     
     $numDependancies = $XmlDocument.packages.package[$i].dependancies.ChildNodes.Count
     $numResources = $numDependancies
@@ -167,13 +177,6 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             
             
             Get-Package $depend_groupId $depend_artifactId $depend_version $depend_type $depend_repo $category
-
-            
-
-            Write-Host ---------------------------------------" -ForegroundColor green
-            Write-Host "depend_packageName $depend_packageName" -ForegroundColor green
-            Write-Host ---------------------------------------" -ForegroundColor green
-
 
             $packagedDependencyLoops += "<packagedDependency>$depend_groupId-$depend_artifactId-$depend_version.jar</packagedDependency>"
             if ($depend_type -eq "aar") {
@@ -299,12 +302,20 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_STRING += "-swc DummyANE.swc "
     
     
-    $ADT_FILES = ""
-    $ADT_FILES += "-C platforms/android library.swf classes.jar "
-    $ADT_FILES += "-platformoptions platforms/android/platform.xml "
-    $ADT_FILES += "$groupId-$artifactId-$version.jar "
+    $ADT_FILES_X86 = ""
+    $ADT_FILES_X86 += "-C platforms/android library.swf classes.jar "
+    $ADT_FILES_X86 += "-platformoptions platforms/android/platform.xml "
+    $ADT_FILES_X86 += "$groupId-$artifactId-$version.jar "
     if ($type -eq "aar") {
-        $ADT_FILES += "$resFolderName/. "
+        $ADT_FILES_X86 += "$resFolderName/. "
+    }
+
+    $ADT_FILES_ARM = ""
+    $ADT_FILES_ARM += "-C platforms/android library.swf classes.jar "
+    $ADT_FILES_ARM += "-platformoptions platforms/android/platform.xml "
+    $ADT_FILES_ARM += "$groupId-$artifactId-$version.jar "
+    if ($type -eq "aar") {
+        $ADT_FILES_ARM += "$resFolderName/. "
     }
 
 
@@ -332,28 +343,40 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                     Copy-Item -Path $currentDir\cache\$category\$depend_resFolderName $currentDir\platforms\android -Force -Recurse
                 }
                 
-
                 if (-not (Test-Path "$currentDir\platforms\android\$depend_resFolderName\values")) {
                     New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values -ItemType "directory"
                     New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml
                     Set-Content -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml -Value $defaultResource
                 }
-            }
 
-            $ADT_FILES += "$depend_groupId-$depend_artifactId-$depend_version.jar "
+                if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni)) {
+                    if (-not (Test-Path "$currentDir\platforms\android\jni")) {
+                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\jni\x86 -Force -Recurse
+                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\jni\armeabi-v7a -Force -Recurse
+                    }
+                    $ADT_FILES_X86 += "jni/x86/. "
+                    $ADT_FILES_ARM += "jni/armeabi-v7a/. "
+                }
+
+
+            }
+            ## any depend jnis also
+
+            $ADT_FILES_ARM += "$depend_groupId-$depend_artifactId-$depend_version.jar "
+            $ADT_FILES_X86 += "$depend_groupId-$depend_artifactId-$depend_version.jar "
             if ($depend_type -eq "aar") {
-                $ADT_FILES += "$depend_resFolderName/. "
+                $ADT_FILES_ARM += "$depend_resFolderName/. "
+                $ADT_FILES_X86 += "$depend_resFolderName/. "
             }
 
             Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version.jar $currentDir\platforms\android\$depend_groupId-$depend_artifactId-$depend_version.jar -Force
         }
     }
 
-
     $ADT_STRING += "-platform Android-ARM "
-    $ADT_STRING += $ADT_FILES
+    $ADT_STRING += $ADT_FILES_ARM
     $ADT_STRING += "-platform Android-x86 "
-    $ADT_STRING += $ADT_FILES
+    $ADT_STRING += $ADT_FILES_X86
     
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
@@ -367,7 +390,9 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         Remove-Item $currentDir\platforms\android\$resFolderName -Recurse
     }
     Remove-Item $currentDir\platforms\android\$groupId-$artifactId-$version.jar
-
+    if ((Test-Path "$currentDir\platforms\android\jni")) {
+        Remove-Item $currentDir\platforms\android\jni -Recurse
+    }
 
     if($numDependancies -gt 0) {
         $dependancies = $XmlDocument.packages.package[$i].dependancies
