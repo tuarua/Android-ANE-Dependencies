@@ -95,7 +95,7 @@ if (-not (Test-Path $ADT_PATH)) {
 }
 
 if (-not (Test-Path $currentDir\cache)) {
-    New-Item -Path $currentDir\cache
+    New-Item -Path $currentDir\cache -ItemType "directory"
 }
 
 
