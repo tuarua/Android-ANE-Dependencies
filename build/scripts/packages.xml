@@ -404,7 +404,6 @@
         </dependancies>
     </package>
 
-
     <package name="firebase-ml-vision">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-vision</artifactId>
@@ -427,13 +426,6 @@
                 <type>aar</type>
                 <repo>google</repo>
             </package>
-            <package name="play-services-vision-image-label">
-                <groupId>com.google.android.gms</groupId>
-                <artifactId>play-services-vision-image-label</artifactId>
-                <version>15.0.0</version>
-                <type>aar</type>
-                <repo>google</repo>
-            </package>
             <package name="firebase-ml-common">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-ml-common</artifactId>
@@ -443,6 +435,24 @@
             </package>
         </dependancies>
     </package>
+
+	<package name="play-services-vision-image-label">
+		<groupId>com.google.android.gms</groupId>
+		<artifactId>play-services-vision-image-label</artifactId>
+		<version>15.0.0</version>
+		<type>aar</type>
+		<repo>google</repo>
+		<category>firebase</category>
+		<dependancies>
+			<package name="firebase-ml-vision-image-label-model">
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-ml-vision-image-label-model</artifactId>
+			<version>15.0.0</version>
+			<type>aar</type>
+			<repo>google</repo>
+			</package>
+		</dependancies>
+	</package>
 
     <!-- Support -->
     <package name="support-design">

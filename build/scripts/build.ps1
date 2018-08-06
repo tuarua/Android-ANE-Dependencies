@@ -350,12 +350,12 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                 }
 
                 if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni)) {
-                    if (-not (Test-Path "$currentDir\platforms\android\jni")) {
-                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\jni\x86 -Force -Recurse
-                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\jni\armeabi-v7a -Force -Recurse
+                    if (-not (Test-Path "$currentDir\platforms\android\libs")) {
+                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
+                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
                     }
-                    $ADT_FILES_X86 += "jni/x86/. "
-                    $ADT_FILES_ARM += "jni/armeabi-v7a/. "
+                    $ADT_FILES_X86 += "libs/x86/. "
+                    $ADT_FILES_ARM += "libs/armeabi-v7a/. "
                 }
 
 
@@ -390,8 +390,8 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         Remove-Item $currentDir\platforms\android\$resFolderName -Recurse
     }
     Remove-Item $currentDir\platforms\android\$groupId-$artifactId-$version.jar
-    if ((Test-Path "$currentDir\platforms\android\jni")) {
-        Remove-Item $currentDir\platforms\android\jni -Recurse
+    if ((Test-Path "$currentDir\platforms\android\libs")) {
+        Remove-Item $currentDir\platforms\android\libs -Recurse
     }
 
     if($numDependancies -gt 0) {
