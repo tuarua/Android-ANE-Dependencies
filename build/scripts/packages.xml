@@ -9,10 +9,43 @@
         <category>misc</category>
         <dependancies></dependancies>
     </package>
+
+    <package name="kotlinx-coroutines-android">
+        <groupId>org.jetbrains.kotlinx</groupId>
+    	<artifactId>kotlinx-coroutines-android</artifactId>
+    	<version>0.24.0</version>
+        <type>jar</type>
+        <repo>jcenter</repo>
+        <category>kotlin</category>
+        <dependancies>
+        	<package name="kotlinx-coroutines-core">
+                <groupId>org.jetbrains.kotlinx</groupId>
+    			<artifactId>kotlinx-coroutines-core</artifactId>
+    			<version>0.24.0</version>
+                <type>jar</type>
+        		<repo>jcenter</repo>
+            </package>
+        	<package name="kotlinx-coroutines-core-common">
+                <groupId>org.jetbrains.kotlinx</groupId>
+    			<artifactId>kotlinx-coroutines-core-common</artifactId>
+    			<version>0.24.0</version>
+                <type>jar</type>
+        		<repo>jcenter</repo>
+            </package>
+			<package name="atomicfu-common">
+                <groupId>org.jetbrains.kotlinx</groupId>
+    			<artifactId>atomicfu-common</artifactId>
+    			<version>0.11.0</version>
+                <type>jar</type>
+        		<repo>jcenter</repo>
+            </package>
+        </dependancies>
+    </package>
+
     <package name="anko-commons">
         <groupId>org.jetbrains.anko</groupId>
         <artifactId>anko-commons</artifactId>
-        <version>0.10.1</version>
+        <version>0.10.5</version>
         <type>jar</type>
         <repo>jcenter</repo>
         <category>kotlin</category>
