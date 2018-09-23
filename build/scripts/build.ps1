@@ -351,11 +351,17 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
 
                 if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni)) {
                     if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
-                        Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
+                        if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86)) {
+                            Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
+                            $ADT_FILES_X86 += "libs/x86/. "
+                        }
+                        if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a)) {
+                            Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
+                            $ADT_FILES_ARM += "libs/armeabi-v7a/. "
+                        }
+                        
                     }
-                    $ADT_FILES_X86 += "libs/x86/. "
-                    $ADT_FILES_ARM += "libs/armeabi-v7a/. "
+                    
                 }
 
 
@@ -381,6 +387,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
     Write-Host "Building" -ForegroundColor yellow
+
     $process3 = start-process "cmd.exe" "/c $ADT_STRING" -WorkingDirectory $currentDir -PassThru -windowstyle Hidden
     Wait-Process -InputObject $process3
 
