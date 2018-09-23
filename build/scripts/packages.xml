@@ -88,7 +88,6 @@
         <repo>maven</repo>
         <category>misc</category>
         <dependancies></dependancies>
-
     </package>
 
     <!-- Firebase -->
@@ -332,19 +331,11 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.storage</packageName>
         <artifactId>firebase-storage</artifactId>
-        <version>16.0.1</version>
+        <version>16.0.2</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
-        <dependancies>
-            <package name="firebase-storage-common">
-                <groupId>com.google.firebase</groupId>
-                <artifactId>firebase-storage-common</artifactId>
-                <version>16.0.1</version>
-                <type>aar</type>
-                <repo>google</repo>
-            </package>
-        </dependancies>
+        <dependancies></dependancies>
     </package>
 
     <package name="firebase-dynamic-links">
@@ -422,7 +413,7 @@
     <package name="firebase-ml-model-interpreter">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-model-interpreter</artifactId>
-        <version>16.0.0</version>
+        <version>16.2.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -440,7 +431,7 @@
     <package name="firebase-ml-vision">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-vision</artifactId>
-        <version>16.0.0</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -462,7 +453,7 @@
             <package name="firebase-ml-common">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-ml-common</artifactId>
-                <version>16.0.0</version>
+                <version>16.1.2</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -748,7 +739,7 @@
     <package name="crashlytics">
         <groupId>com.crashlytics.sdk.android</groupId>
         <artifactId>crashlytics</artifactId>
-        <version>2.9.4</version>
+        <version>2.9.5</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -756,28 +747,28 @@
             <package name="crashlytics-core">
                 <groupId>com.crashlytics.sdk.android</groupId>
                 <artifactId>crashlytics-core</artifactId>
-                <version>2.6.3</version>
+                <version>2.6.4</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="crashlytics-beta">
                 <groupId>com.crashlytics.sdk.android</groupId>
                 <artifactId>beta</artifactId>
-                <version>1.2.9</version>
+                <version>1.2.10</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="crashlytics-answers">
                 <groupId>com.crashlytics.sdk.android</groupId>
                 <artifactId>answers</artifactId>
-                <version>1.4.2</version>
+                <version>1.4.3</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="fabric">
                 <groupId>io.fabric.sdk.android</groupId>
                 <artifactId>fabric</artifactId>
-                <version>1.4.3</version>
+                <version>1.4.4</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
