@@ -11,8 +11,7 @@ function Get-Package {
 
     $packageDirectory = "$currentDir\cache\$category\$groupId"
     $packageName = "$artifactId-$version"
-
-    if (-not (Test-Path $packageDirectory\$groupId-$packageName.jar)) {
+    if (-not (Test-Path "$packageDirectory-$packageName.jar")) {
         if ($repo -eq "maven") {
             $repoUri = $MAVEN_REPO
         }elseif ($repo -eq "fabric") {
@@ -125,6 +124,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         New-Item -Path $currentDir\cache\$category -ItemType "directory"
     }
     
+
     Get-Package $groupId $artifactId $version $type $repo $category
 
     $packagedResources = ""
@@ -204,13 +204,15 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     </platform>"
 
     Set-Content -Path $currentDir\platforms\android\platform.xml -Value $platformXml
+    $versionCleaned = $version.replace("-android","")
+
 
     $extensionXml = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>
 <extension xmlns=`"http://ns.adobe.com/air/extension/19.0`">
     <id>$groupId.$artifactId</id>
     <name>$artifactId</name>
     <copyright></copyright>
-    <versionNumber>$version</versionNumber>
+    <versionNumber>$versionCleaned</versionNumber>
     <platforms>
         <platform name=`"Android-ARM`">
             <applicationDeployment>
@@ -290,6 +292,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             New-Item -Path $currentDir\platforms\android\$resFolderName\values\strings.xml
             Set-Content -Path $currentDir\platforms\android\$resFolderName\values\strings.xml -Value $defaultResource
         }
+
     }
     Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version.jar $currentDir\platforms\android\$groupId-$artifactId-$version.jar -Force
 
@@ -308,6 +311,16 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_FILES_X86 += "$groupId-$artifactId-$version.jar "
     if ($type -eq "aar") {
         $ADT_FILES_X86 += "$resFolderName/. "
+
+        ## Do JNI here
+        if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
+            if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86")) {
+                Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
+                $ADT_FILES_X86 += "libs/x86/. "
+                ## TODO set a bool here to say we already have the libs 
+            }
+        }
+
     }
 
     $ADT_FILES_ARM = ""
@@ -316,6 +329,16 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_FILES_ARM += "$groupId-$artifactId-$version.jar "
     if ($type -eq "aar") {
         $ADT_FILES_ARM += "$resFolderName/. "
+
+        ## Do JNI here
+        if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
+            if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a")) {
+                Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
+                $ADT_FILES_ARM += "libs/armeabi-v7a/. "
+                ## TODO set a bool here to say we already have the libs 
+            }
+        }
+
     }
 
 
