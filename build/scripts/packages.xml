@@ -13,7 +13,7 @@
     <package name="kotlinx-coroutines-android">
         <groupId>org.jetbrains.kotlinx</groupId>
     	<artifactId>kotlinx-coroutines-android</artifactId>
-    	<version>1.0.1</version>
+    	<version>1.2.2</version>
         <type>jar</type>
         <repo>jcenter</repo>
         <category>kotlin</category>
@@ -21,14 +21,7 @@
         	<package name="kotlinx-coroutines-core">
                 <groupId>org.jetbrains.kotlinx</groupId>
     			<artifactId>kotlinx-coroutines-core</artifactId>
-    			<version>1.0.1</version>
-                <type>jar</type>
-        		<repo>jcenter</repo>
-            </package>
-        	<package name="kotlinx-coroutines-core-common">
-                <groupId>org.jetbrains.kotlinx</groupId>
-    			<artifactId>kotlinx-coroutines-core-common</artifactId>
-    			<version>1.0.1</version>
+    			<version>1.2.2</version>
                 <type>jar</type>
         		<repo>jcenter</repo>
             </package>
@@ -91,7 +84,7 @@
             <package name="error_prone_annotations">
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_annotations</artifactId>
-                <version>2.2.0</version>
+                <version>2.3.2</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
@@ -125,7 +118,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.iid</packageName>
         <artifactId>firebase-iid</artifactId>
-        <version>17.0.4</version>
+        <version>19.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -133,7 +126,7 @@
             <package name="firebase-iid-interop">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-iid-interop</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -197,7 +190,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.firestore</packageName>
         <artifactId>firebase-firestore</artifactId>
-        <version>18.0.1</version>
+        <version>20.1.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -205,14 +198,14 @@
             <package name="firebase-database-collection">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-database-collection</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="protolite-well-known-types">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>protolite-well-known-types</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -226,21 +219,21 @@
             <package name="grpc-stub">
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-stub</artifactId>
-                <version>1.16.1</version>
+                <version>1.21.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
-            <package name="grpc-core">
+            <package name="grpc-api">
                 <groupId>io.grpc</groupId>
-                <artifactId>grpc-core</artifactId>
-                <version>1.16.1</version>
+                <artifactId>grpc-api</artifactId>
+                <version>1.21.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
             <package name="grpc-context">
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-context</artifactId>
-                <version>1.16.1</version>
+                <version>1.21.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
@@ -251,38 +244,24 @@
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
-            <package name="opencensus-api">
-                <groupId>io.opencensus</groupId>
-                <artifactId>opencensus-api</artifactId>
-                <version>0.12.3</version>
-                <type>jar</type>
-                <repo>maven</repo>
-            </package>
-            <package name="opencensus-contrib-grpc-metrics">
-                <groupId>io.opencensus</groupId>
-                <artifactId>opencensus-contrib-grpc-metrics</artifactId>
-                <version>0.12.3</version>
-                <type>jar</type>
-                <repo>maven</repo>
-            </package>
 			<package name="grpc-android">
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-android</artifactId>
-                <version>1.16.1</version>
+                <version>1.21.0</version>
                 <type>aar</type>
                 <repo>maven</repo>
             </package>
 			<package name="grpc-okhttp">
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-okhttp</artifactId>
-                <version>1.16.1</version>
+                <version>1.21.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
 			<package name="grpc-protobuf-lite">
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-protobuf-lite</artifactId>
-                <version>1.16.1</version>
+                <version>1.21.0</version>
                 <type>jar</type>
                 <repo>maven</repo>
             </package>
@@ -293,7 +272,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.auth</packageName>
         <artifactId>firebase-auth</artifactId>
-        <version>16.0.5</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -301,7 +280,7 @@
             <package name="firebase-auth-interop">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-auth-interop</artifactId>
-                <version>16.0.1</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -312,7 +291,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.analytics</packageName>
         <artifactId>firebase-analytics</artifactId>
-        <version>16.0.5</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -320,28 +299,28 @@
         	<package name="play-services-measurement-api">
                 <groupId>com.google.android.gms</groupId>
     			<artifactId>play-services-measurement-api</artifactId>
-    			<version>16.0.3</version>
+    			<version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
         	<package name="firebase-analytics-impl">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-analytics-impl</artifactId>
-                <version>16.2.3</version>
+                <version>16.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-measurement-connector">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-measurement-connector</artifactId>
-                <version>17.0.1</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-measurement-connector-impl">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-measurement-connector-impl</artifactId>
-                <version>17.0.3</version>
+                <version>17.0.5</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -349,9 +328,16 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.common</packageName>
                 <artifactId>firebase-common</artifactId>
-                <version>16.0.4</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
+            </package>
+            <package name="auto-value-annotations">
+                <groupId>com.google.auto.value</groupId>
+                <artifactId>auto-value-annotations</artifactId>
+                <version>1.6.3</version>
+                <type>jar</type>
+                <repo>maven</repo>
             </package>
         </dependancies>
     </package>
@@ -360,7 +346,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.storage</packageName>
         <artifactId>firebase-storage</artifactId>
-        <version>16.0.5</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -370,7 +356,7 @@
     <package name="firebase-dynamic-links">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-dynamic-links</artifactId>
-        <version>16.1.3</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -380,7 +366,7 @@
     <package name="firebase-invites">
         <groupId>com.google.firebase</groupId>
     	<artifactId>firebase-invites</artifactId>
-    	<version>16.0.5</version>
+    	<version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -389,7 +375,7 @@
                 <groupId>com.google.android.gms</groupId>
                 <packageName>com.google.android.gms.appinvite</packageName>
     			<artifactId>play-services-appinvite</artifactId>
-    			<version>16.0.5</version>
+    			<version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -400,7 +386,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.config</packageName>
         <artifactId>firebase-config</artifactId>
-        <version>16.1.0</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -408,7 +394,7 @@
             <package name="firebase-abt">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-abt</artifactId>
-                <version>16.0.1</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -419,19 +405,18 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.messaging</packageName>
         <artifactId>firebase-messaging</artifactId>
-        <version>17.3.4</version>
+        <version>19.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies></dependancies>
     </package>
 
-    <!-- Performance 16 causes crash -->
     <package name="firebase-perf">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.perf</packageName>
         <artifactId>firebase-perf</artifactId>
-        <version>16.2.1</version>
+        <version>18.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -442,7 +427,7 @@
     <package name="firebase-ml-model-interpreter">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-model-interpreter</artifactId>
-        <version>17.0.3</version>
+        <version>20.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -450,7 +435,7 @@
             <package name="tensorflow-lite">
                 <groupId>org.tensorflow</groupId>
                 <artifactId>tensorflow-lite</artifactId>
-                <version>1.12.0</version>
+                <version>1.13.1</version>
                 <type>aar</type>
                 <repo>jcenter</repo>
             </package>
@@ -460,29 +445,36 @@
     <package name="firebase-ml-vision">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-vision</artifactId>
-        <version>19.0.2</version>
+        <version>21.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
         <dependancies>
+            <package name="exifinterface">
+                <groupId>androidx.exifinterface</groupId>
+                <artifactId>exifinterface</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
             <package name="play-services-vision">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-vision</artifactId>
-                <version>17.0.2</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-vision-common">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-vision-common</artifactId>
-                <version>17.0.2</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-ml-common">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-ml-common</artifactId>
-                <version>16.2.3</version>
+                <version>20.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -492,17 +484,17 @@
 	<package name="play-services-vision-image-label">
 		<groupId>com.google.android.gms</groupId>
 		<artifactId>play-services-vision-image-label</artifactId>
-		<version>17.0.2</version>
+		<version>18.0.0</version>
 		<type>aar</type>
 		<repo>google</repo>
 		<category>firebase</category>
 		<dependancies>
 			<package name="firebase-ml-vision-image-label-model">
-			<groupId>com.google.firebase</groupId>
-			<artifactId>firebase-ml-vision-image-label-model</artifactId>
-			<version>17.0.2</version>
-			<type>aar</type>
-			<repo>google</repo>
+    			<groupId>com.google.firebase</groupId>
+    			<artifactId>firebase-ml-vision-image-label-model</artifactId>
+    			<version>18.0.0</version>
+    			<type>aar</type>
+    			<repo>google</repo>
 			</package>
 		</dependancies>
 	</package>
@@ -510,25 +502,53 @@
 	<package name="firebase-ml-natural-language">
 		<groupId>com.google.firebase</groupId>
 		<artifactId>firebase-ml-natural-language</artifactId>
-		<version>18.1.1</version>
+		<version>20.0.0</version>
 		<type>aar</type>
 		<repo>google</repo>
 		<category>firebase</category>
 		<dependancies>
 			<package name="firebase-ml-natural-language-language-id-model">
-			<groupId>com.google.firebase</groupId>
-			<artifactId>firebase-ml-natural-language-language-id-model</artifactId>
-			<version>18.0.2</version>
-			<type>aar</type>
-			<repo>google</repo>
+    			<groupId>com.google.firebase</groupId>
+    			<artifactId>firebase-ml-natural-language-language-id-model</artifactId>
+    			<version>20.0.0</version>
+    			<type>aar</type>
+    			<repo>google</repo>
 			</package>
+            <package name="firebase-ml-natural-language-smart-reply">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-ml-natural-language-smart-reply</artifactId>
+                <version>18.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-ml-natural-language-smart-reply-model">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-ml-natural-language-smart-reply-model</artifactId>
+                <version>18.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-ml-natural-language-translate">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-ml-natural-language-translate</artifactId>
+                <version>20.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-ml-natural-language-translate-model">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-ml-natural-language-translate-model</artifactId>
+                <version>20.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
 		</dependancies>
 	</package>
 
     <package name="firebase-ml-vision-face-model">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-ml-vision-face-model</artifactId>
-        <version>17.0.2</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -585,6 +605,224 @@
             </package>
         </dependancies>
     </package>
+
+    <package name="appcompat">
+        <groupId>androidx.appcompat</groupId>
+        <artifactId>appcompat</artifactId>
+        <version>1.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>support</category>
+        <dependancies>
+            <package name="vectordrawable">
+                <groupId>androidx.vectordrawable</groupId>
+                <artifactId>vectordrawable</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="vectordrawable">
+                <groupId>androidx.vectordrawable</groupId>
+                <artifactId>vectordrawable-animated</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
+
+    <package name="legacy-support-v4">
+        <groupId>androidx.legacy</groupId>
+        <artifactId>legacy-support-v4</artifactId>
+        <version>1.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>support</category>
+        <dependancies>
+            <package name="core">
+                <groupId>androidx.core</groupId>
+                <artifactId>core</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="annotation">
+                <groupId>androidx.annotation</groupId>
+                <artifactId>annotation</artifactId>
+                <version>1.0.0</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="collection">
+                <groupId>androidx.collection</groupId>
+                <artifactId>collection</artifactId>
+                <version>1.0.0</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="lifecycle-runtime">
+                <groupId>androidx.lifecycle</groupId>
+                <artifactId>lifecycle-runtime</artifactId>
+                <version>2.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="lifecycle-core-common">
+                <groupId>androidx.arch.core</groupId>
+                <artifactId>core-common</artifactId>
+                <version>2.0.0</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="lifecycle-common">
+                <groupId>androidx.lifecycle</groupId>
+                <artifactId>lifecycle-common</artifactId>
+                <version>2.0.0</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+            <package name="lifecycle-viewmodel">
+                <groupId>androidx.lifecycle</groupId>
+                <artifactId>lifecycle-viewmodel</artifactId>
+                <version>2.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="versionedparcelable">
+                <groupId>androidx.versionedparcelable</groupId>
+                <artifactId>versionedparcelable</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            
+            <package name="fragment">
+                <groupId>androidx.fragment</groupId>
+                <artifactId>fragment</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="loader">
+                <groupId>androidx.loader</groupId>
+                <artifactId>loader</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+
+            <package name="legacy-support-core-utils">
+                <groupId>androidx.legacy</groupId>
+                <artifactId>legacy-support-core-utils</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+
+            <package name="documentfile">
+                <groupId>androidx.documentfile</groupId>
+                <artifactId>documentfile</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="localbroadcastmanager">
+                <groupId>androidx.localbroadcastmanager</groupId>
+                <artifactId>localbroadcastmanager</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="print">
+                <groupId>androidx.print</groupId>
+                <artifactId>print</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+
+            <package name="legacy-support-core-ui">
+                <groupId>androidx.legacy</groupId>
+                <artifactId>legacy-support-core-ui</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="asynclayoutinflater">
+                <groupId>androidx.asynclayoutinflater</groupId>
+                <artifactId>asynclayoutinflater</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="coordinatorlayout">
+                <groupId>androidx.coordinatorlayout</groupId>
+                <artifactId>coordinatorlayout</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="customview">
+                <groupId>androidx.customview</groupId>
+                <artifactId>customview</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="cursoradapter">
+                <groupId>androidx.cursoradapter</groupId>
+                <artifactId>cursoradapter</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="drawerlayout">
+                <groupId>androidx.drawerlayout</groupId>
+                <artifactId>drawerlayout</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="interpolator">
+                <groupId>androidx.interpolator</groupId>
+                <artifactId>interpolator</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="slidingpanelayout">
+                <groupId>androidx.slidingpanelayout</groupId>
+                <artifactId>slidingpanelayout</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="swiperefreshlayout">
+                <groupId>androidx.swiperefreshlayout</groupId>
+                <artifactId>swiperefreshlayout</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="viewpager">
+                <groupId>androidx.viewpager</groupId>
+                <artifactId>viewpager</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+
+            <package name="media">
+                <groupId>androidx.media</groupId>
+                <artifactId>media</artifactId>
+                <version>1.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+
+        </dependancies>
+    </package>
+
     <package name="support-v4">
         <groupId>com.android.support</groupId>
         <artifactId>support-v4</artifactId>
@@ -654,7 +892,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>16.0.0</version>
+        <version>18.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -662,7 +900,7 @@
             <package name="play-services-ads-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-ads-base</artifactId>
-                <version>16.0.0</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -673,7 +911,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.common</packageName>
         <artifactId>play-services-base</artifactId>
-        <version>16.0.1</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -682,63 +920,63 @@
                 <groupId>com.google.android.gms</groupId>
                 <packageName>com.google.android.gms</packageName>
                 <artifactId>play-services-basement</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-tasks">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-tasks</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-flags">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-flags</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-measurement-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-measurement-base</artifactId>
-                <version>16.0.4</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-stats">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-stats</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-phenotype">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-phenotype</artifactId>
-                <version>16.0.0</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-clearcut">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-clearcut</artifactId>
-                <version>16.0.0</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-iid">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-iid</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-ads-identifier">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-ads-identifier</artifactId>
-                <version>16.0.0</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -748,7 +986,7 @@
     <package name="play-services-location">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-location</artifactId>
-        <version>16.0.0</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -758,7 +996,7 @@
     <package name="play-services-maps">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-maps</artifactId>
-        <version>16.1.0</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -769,7 +1007,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.auth</packageName>
         <artifactId>play-services-auth</artifactId>
-        <version>16.0.1</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -777,14 +1015,14 @@
             <package name="play-services-auth-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-auth-base</artifactId>
-                <version>16.0.0</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-auth-api-phone">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-auth-api-phone</artifactId>
-                <version>16.0.0</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -796,7 +1034,7 @@
     <package name="crashlytics">
         <groupId>com.crashlytics.sdk.android</groupId>
         <artifactId>crashlytics</artifactId>
-        <version>2.9.9</version>
+        <version>2.10.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -804,7 +1042,7 @@
             <package name="crashlytics-core">
                 <groupId>com.crashlytics.sdk.android</groupId>
                 <artifactId>crashlytics-core</artifactId>
-                <version>2.6.8</version>
+                <version>2.7.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -853,53 +1091,4 @@
         <repo>jcenter</repo>
         <category>misc</category>
     </package>
-
-
-    <!--
-        <package name="exoplayer">
-            <groupId>com.google.android.exoplayer</groupId>
-            <artifactId>exoplayer</artifactId>
-            <version>2.7.1</version>
-            <type>aar</type>
-            <repo>jcenter</repo>
-            <category>misc</category>
-            <dependancies>
-                <package name="exoplayer-core">
-                    <groupId>com.google.android.exoplayer</groupId>
-                    <artifactId>exoplayer-core</artifactId>
-                    <version>2.7.1</version>
-                    <type>aar</type>
-                    <repo>jcenter</repo>
-                </package>
-                <package name="exoplayer-dash">
-                    <groupId>com.google.android.exoplayer</groupId>
-                    <artifactId>exoplayer-dash</artifactId>
-                    <version>2.7.1</version>
-                    <type>aar</type>
-                    <repo>jcenter</repo>
-                </package>
-                <package name="exoplayer-hls">
-                    <groupId>com.google.android.exoplayer</groupId>
-                    <artifactId>exoplayer-hls</artifactId>
-                    <version>2.7.1</version>
-                    <type>aar</type>
-                    <repo>jcenter</repo>
-                </package>
-                <package name="exoplayer-smoothstreaming">
-                    <groupId>com.google.android.exoplayer</groupId>
-                    <artifactId>exoplayer-smoothstreaming</artifactId>
-                    <version>2.7.1</version>
-                    <type>aar</type>
-                    <repo>jcenter</repo>
-                </package>
-                <package name="exoplayer-ui">
-                    <groupId>com.google.android.exoplayer</groupId>
-                    <artifactId>exoplayer-ui</artifactId>
-                    <version>2.7.1</version>
-                    <type>aar</type>
-                    <repo>jcenter</repo>
-                </package>
-            </dependancies>
-        </package>
-    -->
 </packages>

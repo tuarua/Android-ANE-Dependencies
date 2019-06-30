@@ -221,7 +221,7 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             <finalizer>com.tuarua.DummyANE</finalizer>
             </applicationDeployment>
         </platform>
-        <platform name=`"Android-x86`">
+        <platform name=`"Android-ARM64`">
             <applicationDeployment>
             <nativeLibrary>classes.jar</nativeLibrary>
             <initializer>com.tuarua.DummyANE</initializer>
@@ -304,20 +304,26 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_STRING = "$ADT_PATH -package -target ane $currentDir\..\..\anes\$category\$groupId.$artifactId-$version.ane extension.xml "
     $ADT_STRING += "-swc DummyANE.swc "
     
-    
-    $ADT_FILES_X86 = ""
-    $ADT_FILES_X86 += "-C platforms/android library.swf classes.jar "
-    $ADT_FILES_X86 += "-platformoptions platforms/android/platform.xml "
-    $ADT_FILES_X86 += "$groupId-$artifactId-$version.jar "
-    if ($type -eq "aar") {
-        $ADT_FILES_X86 += "$resFolderName/. "
+    $HasLibs_ARM = $False
+    $HasLibs_ARM64 = $False
 
+    $ADT_FILES_ARM64 = ""
+    $ADT_FILES_ARM64 += "-C platforms/android library.swf classes.jar "
+    $ADT_FILES_ARM64 += "-platformoptions platforms/android/platform.xml "
+    $ADT_FILES_ARM64 += "$groupId-$artifactId-$version.jar "
+    if ($type -eq "aar") {
+        $ADT_FILES_ARM64 += "$resFolderName/. "
         ## Do JNI here
         if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
-            if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86")) {
-                Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
-                $ADT_FILES_X86 += "libs/x86/. "
-                ## TODO set a bool here to say we already have the libs 
+            if (-not (Test-Path "$currentDir\platforms\android\libs")) {
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+            }
+            if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\arm64-v8a")) {
+                $HasLibs_ARM64 = $True
+                if (-not (Test-Path "$currentDir\platforms\android\libs\arm64-v8a")) {
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a"
+                }
+                Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\arm64-v8a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\arm64-v8a
             }
         }
 
@@ -329,16 +335,19 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     $ADT_FILES_ARM += "$groupId-$artifactId-$version.jar "
     if ($type -eq "aar") {
         $ADT_FILES_ARM += "$resFolderName/. "
-
         ## Do JNI here
         if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
+            if (-not (Test-Path "$currentDir\platforms\android\libs")) {
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+            }
             if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a")) {
-                Copy-Item -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
-                $ADT_FILES_ARM += "libs/armeabi-v7a/. "
-                ## TODO set a bool here to say we already have the libs 
+                $HasLibs_ARM = $True
+                if (-not (Test-Path "$currentDir\platforms\android\libs\armeabi-v7a")) {
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a"
+                }
+                Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\armeabi-v7a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\armeabi-v7a
             }
         }
-
     }
 
 
@@ -371,41 +380,50 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                     New-Item -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml
                     Set-Content -Path $currentDir\platforms\android\$depend_resFolderName\values\strings.xml -Value $defaultResource
                 }
-
                 if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni)) {
                     if (-not (Test-Path "$currentDir\platforms\android\libs")) {
-                        if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86)) {
-                            Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 $currentDir\platforms\android\libs\x86 -Force -Recurse
-                            $ADT_FILES_X86 += "libs/x86/. "
-                        }
-                        if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a)) {
-                            Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a $currentDir\platforms\android\libs\armeabi-v7a -Force -Recurse
-                            $ADT_FILES_ARM += "libs/armeabi-v7a/. "
-                        }
-                        
+                        New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
                     }
-                    
+                    if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\arm64-v8a)) {
+                        $HasLibs_ARM64 = $True
+                        if (-not (Test-Path "$currentDir\platforms\android\libs\arm64-v8a")) {
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\arm64-v8a"
+                        }
+                        Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\arm64-v8a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\arm64-v8a
+                    }
+                    if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a)) {
+                        $HasLibs_ARM = $True
+                        if (-not (Test-Path "$currentDir\platforms\android\libs\armeabi-v7a")) {
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\armeabi-v7a"
+                        }
+                        Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\armeabi-v7a -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\armeabi-v7a
+                    }
                 }
-
 
             }
             ## any depend jnis also
-
             $ADT_FILES_ARM += "$depend_groupId-$depend_artifactId-$depend_version.jar "
-            $ADT_FILES_X86 += "$depend_groupId-$depend_artifactId-$depend_version.jar "
+            $ADT_FILES_ARM64 += "$depend_groupId-$depend_artifactId-$depend_version.jar "
             if ($depend_type -eq "aar") {
                 $ADT_FILES_ARM += "$depend_resFolderName/. "
-                $ADT_FILES_X86 += "$depend_resFolderName/. "
+                $ADT_FILES_ARM64 += "$depend_resFolderName/. "
             }
 
             Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version.jar $currentDir\platforms\android\$depend_groupId-$depend_artifactId-$depend_version.jar -Force
         }
     }
 
+    if($HasLibs_ARM64 -eq $True) {
+        $ADT_FILES_ARM64 += "libs/arm64-v8a/. "
+    }
+    if($HasLibs_ARM -eq $True) {
+        $ADT_FILES_ARM += "libs/armeabi-v7a/. "
+    }
+
     $ADT_STRING += "-platform Android-ARM "
     $ADT_STRING += $ADT_FILES_ARM
-    $ADT_STRING += "-platform Android-x86 "
-    $ADT_STRING += $ADT_FILES_X86
+    $ADT_STRING += "-platform Android-ARM64 "
+    $ADT_STRING += $ADT_FILES_ARM64
     
     $ADT_STRING += "-platform default -C platforms/default library.swf"
 
