@@ -228,6 +228,13 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             <finalizer>com.tuarua.DummyANE</finalizer>
             </applicationDeployment>
         </platform>
+        <platform name=`"Android-x86`">
+            <applicationDeployment>
+            <nativeLibrary>classes.jar</nativeLibrary>
+            <initializer>com.tuarua.DummyANE</initializer>
+            <finalizer>com.tuarua.DummyANE</finalizer>
+            </applicationDeployment>
+        </platform>
         <platform name=`"default`">
         <applicationDeployment/></platform>
     </platforms>
@@ -306,6 +313,29 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
     
     $HasLibs_ARM = $False
     $HasLibs_ARM64 = $False
+    $HasLibs_X86 = $False
+
+    $ADT_FILES_X86 = ""
+    $ADT_FILES_X86 += "-C platforms/android library.swf classes.jar "
+    $ADT_FILES_X86 += "-platformoptions platforms/android/platform.xml "
+    $ADT_FILES_X86 += "$groupId-$artifactId-$version.jar "
+    if ($type -eq "aar") {
+        $ADT_FILES_X86 += "$resFolderName/. "
+        ## Do JNI here
+        if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni")) {
+            if (-not (Test-Path "$currentDir\platforms\android\libs")) {
+                New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
+            }
+            if ((Test-Path "$currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86")) {
+                $HasLibs_X86 = $True
+                if (-not (Test-Path "$currentDir\platforms\android\libs\x86")) {
+                   New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86"
+                }
+                Get-ChildItem -Path $currentDir\cache\$category\$groupId-$artifactId-$version-jni\x86 -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\x86
+            }
+        }
+
+    }
 
     $ADT_FILES_ARM64 = ""
     $ADT_FILES_ARM64 += "-C platforms/android library.swf classes.jar "
@@ -384,6 +414,13 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
                     if (-not (Test-Path "$currentDir\platforms\android\libs")) {
                         New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs"
                     }
+                    if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86)) {
+                        $HasLibs_X86 = $True
+                        if (-not (Test-Path "$currentDir\platforms\android\libs\x86")) {
+                            New-Item -ItemType Directory -Force -Path "$currentDir\platforms\android\libs\x86"
+                        }
+                        Get-ChildItem -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\x86 -Recurse | Copy-Item -Destination $currentDir\platforms\android\libs\x86
+                    }
                     if ((Test-Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version-jni\arm64-v8a)) {
                         $HasLibs_ARM64 = $True
                         if (-not (Test-Path "$currentDir\platforms\android\libs\arm64-v8a")) {
@@ -404,15 +441,19 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
             ## any depend jnis also
             $ADT_FILES_ARM += "$depend_groupId-$depend_artifactId-$depend_version.jar "
             $ADT_FILES_ARM64 += "$depend_groupId-$depend_artifactId-$depend_version.jar "
+            $ADT_FILES_X86 += "$depend_groupId-$depend_artifactId-$depend_version.jar "
             if ($depend_type -eq "aar") {
                 $ADT_FILES_ARM += "$depend_resFolderName/. "
                 $ADT_FILES_ARM64 += "$depend_resFolderName/. "
+                $ADT_FILES_X86 += "$depend_resFolderName/. "
             }
 
             Copy-Item -Path $currentDir\cache\$category\$depend_groupId-$depend_artifactId-$depend_version.jar $currentDir\platforms\android\$depend_groupId-$depend_artifactId-$depend_version.jar -Force
         }
     }
-
+    if($HasLibs_X86 -eq $True) {
+        $ADT_FILES_X86 += "libs/x86/. "
+    }
     if($HasLibs_ARM64 -eq $True) {
         $ADT_FILES_ARM64 += "libs/arm64-v8a/. "
     }
@@ -420,6 +461,8 @@ for($i=0;$i -lt $XmlDocument.packages.ChildNodes.Count;$i++) {
         $ADT_FILES_ARM += "libs/armeabi-v7a/. "
     }
 
+    $ADT_STRING += "-platform Android-x86 "
+    $ADT_STRING += $ADT_FILES_X86
     $ADT_STRING += "-platform Android-ARM "
     $ADT_STRING += $ADT_FILES_ARM
     $ADT_STRING += "-platform Android-ARM64 "
