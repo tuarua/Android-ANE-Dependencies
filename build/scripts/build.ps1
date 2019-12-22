@@ -18,12 +18,14 @@ function Get-Package {
             $repoUri = $FABRIC_REPO
         }elseif ($repo -eq "google") {
             $repoUri = $GOOGLE_REPO
+        }elseif ($repo -eq "play-billing") {
+            $repoUri = $PLAY_BILLING_REPO
         }elseif ($repo -eq "jcenter") {
             $repoUri = $JCENTER_REPO
         }elseif ($repo -eq "spring") {
             $repoUri = $SPRNG_REPO
         }
-
+        
         if (-not (Test-Path $packageDirectory)) {
             New-Item -ItemType Directory -Force -Path $packageDirectory
         }
@@ -84,6 +86,7 @@ $ADT_PATH = "$AIR_SDK\bin\adt.bat"
 $MAVEN_REPO = "https://repo1.maven.org/maven2/"
 $FABRIC_REPO = "https://maven.fabric.io/public/"
 $GOOGLE_REPO = "https://dl.google.com/dl/android/maven2/"
+$PLAY_BILLING_REPO = "https://dl.bintray.com/google/play-billing/"
 $JCENTER_REPO ="https://jcenter.bintray.com/"
 $SPRNG_REPO = "http://repo.spring.io/libs-release/"
 $defaultResource = "<?xml version=`"1.0`" encoding=`"utf-8`"?><resources></resources>";
