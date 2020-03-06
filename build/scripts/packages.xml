@@ -1231,6 +1231,24 @@
         </dependancies>
     </package>
 
+    <package name="play-services-games">
+        <groupId>com.google.android.gms</groupId>
+        <packageName>com.google.android.gms.games</packageName>
+        <artifactId>play-services-games</artifactId>
+        <version>19.0.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
+        <dependancies>
+            <package name="play-services-drive">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-drive</artifactId>
+                <version>17.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependancies>
+    </package>
 
     <package name="billing">
         <groupId>com.android.billingclient</groupId>
