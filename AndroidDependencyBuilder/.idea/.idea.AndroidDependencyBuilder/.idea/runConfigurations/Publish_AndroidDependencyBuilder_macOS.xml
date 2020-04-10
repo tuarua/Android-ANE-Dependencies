@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish AndroidDependencyBuilder macOS" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish runtime="osx-x64" target_folder="$PROJECT_DIR$/../bin" target_framework="netcoreapp3.1" uuid_high="6435483046822169067" uuid_low="-4889036604003190102" />
+    <method v="2" />
+  </configuration>
+</component>
