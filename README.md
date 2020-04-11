@@ -24,12 +24,14 @@ Update AIR SDK path in [airsdk.config](https://github.com/tuarua/Android-ANE-Dep
 #### macOS
 
 ```shell
+cd bin
 ./AndroidDependencyBuilder eventbus
 ```
 
 #### Windows
 
 ```shell
+cd bin
 AndroidDependencyBuilder.exe eventbus
 ```
 
