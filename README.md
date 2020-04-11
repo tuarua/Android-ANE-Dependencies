@@ -21,12 +21,19 @@ Packages can be loaded from jcenter | maven | google
 
 Update AIR SDK path in [airsdk.config](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/airsdk.config)  
 
-Build single package
+#### macOS
+
 ```shell
 ./AndroidDependencyBuilder eventbus
 ```
 
-Example package  
+#### Windows
+
+```shell
+AndroidDependencyBuilder.exe eventbus
+```
+
+#### Example package  
 https://mvnrepository.com/artifact/org.greenrobot/eventbus/3.0.0
 
 ```xml
@@ -42,7 +49,7 @@ https://mvnrepository.com/artifact/org.greenrobot/eventbus/3.0.0
 ```
 
 
-Example package with child dependencies    
+#### Example package with child dependencies    
 https://mvnrepository.com/artifact/com.google.firebase/firebase-config/16.0.0
 
 ```xml
