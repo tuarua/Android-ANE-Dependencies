@@ -1,7 +1,5 @@
-namespace AndroidDependencyBuilder
-{
-    public enum Repo
-    {
+namespace AndroidDependencyBuilder {
+    public enum Repo {
         Maven,
         JCenter,
         Google

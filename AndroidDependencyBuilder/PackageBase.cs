@@ -4,10 +4,8 @@ using System.IO.Compression;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace AndroidDependencyBuilder
-{
-    public abstract class PackageBase
-    {
+namespace AndroidDependencyBuilder {
+    public abstract class PackageBase {
         public string Name;
         public string GroupId;
         public string ArtifactId;
@@ -18,8 +16,7 @@ namespace AndroidDependencyBuilder
         protected bool HasJni { get; private set; }
         protected static string CurrentDirectory => Directory.GetCurrentDirectory();
 
-        public async Task Download(string category)
-        {
+        public async Task Download(string category) {
             var packageName = $"{ArtifactId}-{Version}";
             var packageDirectory = $"{CurrentDirectory}/cache/{category}/{GroupId}";
             var resourcesSource = $"{packageDirectory}/{packageName}/res";
@@ -28,8 +25,7 @@ namespace AndroidDependencyBuilder
             var jniDestination = $"{packageDirectory}-{packageName}-jni";
             var groupIdPath = GroupId.Replace(".", "/");
 
-            if (File.Exists($"{packageDirectory}-{packageName}.jar"))
-            {
+            if (File.Exists($"{packageDirectory}-{packageName}.jar")) {
                 Console.WriteLine($"{packageName} already exists");
                 HasResources = Directory.Exists(resourcesDestination);
                 HasJni = Directory.Exists(jniDestination);
@@ -39,8 +35,7 @@ namespace AndroidDependencyBuilder
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Getting package for {ArtifactId}");
 
-            if (!Directory.Exists(packageDirectory))
-            {
+            if (!Directory.Exists(packageDirectory)) {
                 Directory.CreateDirectory(packageDirectory);
             }
 
@@ -48,24 +43,20 @@ namespace AndroidDependencyBuilder
                 $"Downloading {Program.RepoUrls[Repo]}{groupIdPath}/{ArtifactId}/{Version}/{packageName}.{Type}");
 
             var client = new HttpClient();
-            try
-            {
+            try {
                 var response = await client.GetByteArrayAsync(
                     new Uri($"{Program.RepoUrls[Repo]}{groupIdPath}/{ArtifactId}/{Version}/{packageName}.{Type}"));
                 File.WriteAllBytes($"{packageDirectory}/{packageName}.{Type}", response);
 
-                if (Type == Type.aar)
-                {
+                if (Type == Type.aar) {
                     var zipPath = $"{packageDirectory}/{packageName}.zip";
                     File.Move($"{packageDirectory}/{packageName}.aar", zipPath);
                     ZipFile.ExtractToDirectory(zipPath, $"{packageDirectory}/{packageName}");
                     File.Delete(zipPath);
                     File.Move($"{packageDirectory}/{packageName}/classes.jar", $"{packageDirectory}/{packageName}.jar");
 
-                    if (Directory.Exists(resourcesSource))
-                    {
-                        if (Directory.Exists(resourcesDestination))
-                        {
+                    if (Directory.Exists(resourcesSource)) {
+                        if (Directory.Exists(resourcesDestination)) {
                             Directory.Delete(resourcesDestination, true);
                         }
 
@@ -73,10 +64,8 @@ namespace AndroidDependencyBuilder
                         HasResources = true;
                     }
 
-                    if (Directory.Exists(jniSource))
-                    {
-                        if (Directory.Exists(jniDestination))
-                        {
+                    if (Directory.Exists(jniSource)) {
+                        if (Directory.Exists(jniDestination)) {
                             Directory.Delete(jniDestination, true);
                         }
 
@@ -85,8 +74,7 @@ namespace AndroidDependencyBuilder
                     }
                 }
             }
-            catch (HttpRequestException e)
-            {
+            catch (HttpRequestException e) {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
                 return;
@@ -98,10 +86,8 @@ namespace AndroidDependencyBuilder
             Console.ResetColor();
         }
 
-        protected static Repo ConvertRepo(string value)
-        {
-            return value switch
-            {
+        protected static Repo ConvertRepo(string value) {
+            return value switch {
                 "google" => Repo.Google,
                 "jcenter" => Repo.JCenter,
                 "maven" => Repo.Maven,
@@ -109,10 +95,8 @@ namespace AndroidDependencyBuilder
             };
         }
 
-        protected static Type ConvertType(string value)
-        {
-            return value switch
-            {
+        protected static Type ConvertType(string value) {
+            return value switch {
                 "jar" => Type.jar,
                 _ => Type.aar
             };
