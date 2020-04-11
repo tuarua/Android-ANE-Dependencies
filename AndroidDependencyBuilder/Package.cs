@@ -8,10 +8,8 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace AndroidDependencyBuilder
-{
-    public class Package : PackageBase
-    {
+namespace AndroidDependencyBuilder {
+    public class Package : PackageBase {
         public readonly string Category;
         private readonly List<Dependency> _dependencies = new List<Dependency>();
         private readonly bool _hasDependencies;
@@ -20,7 +18,7 @@ namespace AndroidDependencyBuilder
         private static string Shell => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "cmd.exe" : "bash";
 
         private static string Gradlew =>
-            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "gradlew.bat" : "gradlew";
+            RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "/c gradlew.bat" : "gradlew";
 
         private static readonly List<string> PlatformsList = new List<string>
             {"Android-ARM", "Android-ARM64", "Android-x86", "default"};
@@ -28,8 +26,7 @@ namespace AndroidDependencyBuilder
         private static readonly Dictionary<string, string> Arches = new Dictionary<string, string>
             {{"Android-ARM", "armeabi-v7a"}, {"Android-ARM64", "arm64-v8a"}, {"Android-x86", "x86"}};
 
-        public Package(XmlNode node)
-        {
+        public Package(XmlNode node) {
             Name = node.Attributes["name"].Value;
             GroupId = node["groupId"]?.ChildNodes[0].Value;
             ArtifactId = node["artifactId"].ChildNodes[0].Value;
@@ -41,24 +38,20 @@ namespace AndroidDependencyBuilder
             var xmlNodeList = node["dependancies"]?.ChildNodes;
             if (xmlNodeList == null) return;
             _hasDependencies = xmlNodeList.Count > 0;
-            foreach (XmlNode dependency in xmlNodeList)
-            {
+            foreach (XmlNode dependency in xmlNodeList) {
                 _dependencies.Add(new Dependency(dependency));
             }
         }
 
-        public new async Task Download(string category)
-        {
+        public new async Task Download(string category) {
             await base.Download(category);
             if (!_hasDependencies) return;
-            foreach (var dependency in _dependencies)
-            {
+            foreach (var dependency in _dependencies) {
                 await dependency.Download(category);
             }
         }
 
-        public void CreateAneFiles()
-        {
+        public void CreateAneFiles() {
             CleanupBuildFiles();
             CreateBuildFolder();
             BuildPlatformXml();
@@ -68,8 +61,7 @@ namespace AndroidDependencyBuilder
             CleanupBuildFiles();
         }
 
-        private static void CreateBuildFolder()
-        {
+        private static void CreateBuildFolder() {
             Directory.CreateDirectory(BuildDirectory);
             Directory.CreateDirectory($"{BuildDirectory}/bin");
             Directory.CreateDirectory($"{BuildDirectory}/platforms");
@@ -78,8 +70,7 @@ namespace AndroidDependencyBuilder
             File.Copy($"{CurrentDirectory}/DummyANE.swc", $"{BuildDirectory}/bin/DummyANE.swc");
         }
 
-        private void BuildPlatformXml()
-        {
+        private void BuildPlatformXml() {
             var doc = new XmlDocument();
             var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             var root = doc.DocumentElement;
@@ -97,8 +88,7 @@ namespace AndroidDependencyBuilder
             packagedDependenciesNode.AppendChild(baseJarNode);
 
             XmlNode packagedResourcesNode = doc.CreateElement("packagedResources");
-            if (HasResources)
-            {
+            if (HasResources) {
                 XmlNode resourceNode = doc.CreateElement("packagedResource");
 
                 XmlNode packageNameNode = doc.CreateElement("packageName");
@@ -113,8 +103,7 @@ namespace AndroidDependencyBuilder
                 packagedResourcesNode.AppendChild(resourceNode);
             }
 
-            foreach (var dependency in _dependencies)
-            {
+            foreach (var dependency in _dependencies) {
                 XmlNode dependencyJarNode = doc.CreateElement("packagedDependency");
                 dependencyJarNode.AppendChild(
                     doc.CreateTextNode($"{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}.jar"));
@@ -138,16 +127,14 @@ namespace AndroidDependencyBuilder
 
             rootNode.AppendChild(packagedDependenciesNode);
 
-            if (packagedResourcesNode.HasChildNodes)
-            {
+            if (packagedResourcesNode.HasChildNodes) {
                 rootNode.AppendChild(packagedResourcesNode);
             }
 
             doc.Save($"{BuildDirectory}/platforms/android/platform.xml");
         }
 
-        private void BuildExtensionXml()
-        {
+        private void BuildExtensionXml() {
             var doc = new XmlDocument();
             var xmlDeclaration = doc.CreateXmlDeclaration("1.0", "utf-8", null);
             var root = doc.DocumentElement;
@@ -176,8 +163,7 @@ namespace AndroidDependencyBuilder
 
             XmlNode platformsNode = doc.CreateElement("platforms");
 
-            foreach (var p in PlatformsList)
-            {
+            foreach (var p in PlatformsList) {
                 XmlNode platformNode = doc.CreateElement("platform");
                 var nameAttr = doc.CreateAttribute("name");
                 nameAttr.Value = p;
@@ -185,8 +171,7 @@ namespace AndroidDependencyBuilder
 
                 XmlNode applicationDeploymentNode = doc.CreateElement("applicationDeployment");
 
-                if (p != "default")
-                {
+                if (p != "default") {
                     XmlNode nativeLibraryNode = doc.CreateElement("nativeLibrary");
                     nativeLibraryNode.AppendChild(doc.CreateTextNode("classes.jar"));
                     applicationDeploymentNode.AppendChild(nativeLibraryNode);
@@ -208,19 +193,15 @@ namespace AndroidDependencyBuilder
             doc.Save($"{BuildDirectory}/extension.xml");
         }
 
-        private void BuildJavaFiles()
-        {
+        private void BuildJavaFiles() {
             var javaPath = $"{CurrentDirectory}/../native_library/android/dummyane/src/main/java";
-            foreach (var subDir in new DirectoryInfo(javaPath).GetDirectories())
-            {
+            foreach (var subDir in new DirectoryInfo(javaPath).GetDirectories()) {
                 subDir.Delete(true);
             }
 
-            foreach (var s in GroupId.Split("."))
-            {
+            foreach (var s in GroupId.Split(".")) {
                 javaPath = javaPath + "/" + s;
-                if (!Directory.Exists(javaPath))
-                {
+                if (!Directory.Exists(javaPath)) {
                     Directory.CreateDirectory(javaPath);
                 }
             }
@@ -229,8 +210,7 @@ namespace AndroidDependencyBuilder
             File.WriteAllText($"{javaPath}/DummyANE.java",
                 $"package {GroupId}.{artifactIdSafe};public class DummyANE {{}}");
 
-            var startInfo = new ProcessStartInfo(Shell)
-            {
+            var startInfo = new ProcessStartInfo(Shell) {
                 CreateNoWindow = false,
                 UseShellExecute = false,
                 WorkingDirectory = $"{CurrentDirectory}/../native_library/android",
@@ -238,26 +218,22 @@ namespace AndroidDependencyBuilder
                 Arguments = $"{Gradlew} clean"
             };
 
-            try
-            {
+            try {
                 using var exeProcess = Process.Start(startInfo);
                 exeProcess?.WaitForExit();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 return;
             }
 
             startInfo.Arguments = $"{Gradlew} build";
-            try
-            {
+            try {
                 using var exeProcess = Process.Start(startInfo);
                 exeProcess?.WaitForExit();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 return;
@@ -266,12 +242,10 @@ namespace AndroidDependencyBuilder
             Console.ResetColor();
         }
 
-        private void BuildAne()
-        {
+        private void BuildAne() {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Building ANE {GroupId}.{ArtifactId}-{Version}.ane");
-            if (!Directory.Exists($"{CurrentDirectory}/../anes/{Category}"))
-            {
+            if (!Directory.Exists($"{CurrentDirectory}/../anes/{Category}")) {
                 Directory.CreateDirectory($"{CurrentDirectory}/../anes/{Category}");
             }
 
@@ -291,17 +265,15 @@ namespace AndroidDependencyBuilder
             var jars = new List<string>();
             var resources = new List<string>();
 
-            foreach (var name in from XmlNode node in doc.DocumentElement["packagedDependencies"] select node.InnerText)
-            {
+            foreach (var name in from XmlNode node in doc.DocumentElement["packagedDependencies"]
+                select node.InnerText) {
                 jars.Add(name);
                 File.Copy($"{packageDirectory}/{name}", $"{BuildDirectory}/platforms/android/{name}", true);
             }
 
-            if (doc.DocumentElement["packagedResources"] != null)
-            {
+            if (doc.DocumentElement["packagedResources"] != null) {
                 foreach (var folderName in from XmlNode node in doc.DocumentElement["packagedResources"]
-                    select node["folderName"].InnerText)
-                {
+                    select node["folderName"].InnerText) {
                     resources.Add(folderName);
                     DirectoryCopy($"{packageDirectory}/{folderName}",
                         $"{BuildDirectory}/platforms/android/{folderName}");
@@ -314,16 +286,13 @@ namespace AndroidDependencyBuilder
                 $"{Program.AdtPath} -package -target ane {CurrentDirectory}/../anes/{Category}/{GroupId}.{ArtifactId}-{Version}.ane extension.xml ";
             adtString += "-swc DummyANE.swc";
 
-            foreach (var p in PlatformsList)
-            {
+            foreach (var p in PlatformsList) {
                 adtString += $" -platform {p} ";
 
-                if (p == "default")
-                {
+                if (p == "default") {
                     adtString += "-C platforms/default library.swf";
                 }
-                else
-                {
+                else {
                     adtString += "-C platforms/android";
                     adtString += " library.swf classes.jar -platformoptions platforms/android/platform.xml ";
                     adtString += string.Join(" ", jars);
@@ -334,13 +303,11 @@ namespace AndroidDependencyBuilder
                     var libsFolder = $"{BuildDirectory}/platforms/android/libs";
                     var arch = Arches[p];
                     var archFolder = $"{libsFolder}/{arch}";
-                    if (!Directory.Exists(libsFolder))
-                    {
+                    if (!Directory.Exists(libsFolder)) {
                         Directory.CreateDirectory(libsFolder);
                     }
 
-                    if (!Directory.Exists(archFolder))
-                    {
+                    if (!Directory.Exists(archFolder)) {
                         Directory.CreateDirectory(archFolder);
                     }
 
@@ -351,8 +318,12 @@ namespace AndroidDependencyBuilder
                 }
             }
 
-            var startInfo = new ProcessStartInfo(Shell)
-            {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                adtString = adtString.Replace("/", "\\");
+                adtString = "/c " + adtString;
+            }
+
+            var startInfo = new ProcessStartInfo(Shell) {
                 CreateNoWindow = false,
                 UseShellExecute = false,
                 WorkingDirectory = $"{BuildDirectory}",
@@ -360,33 +331,27 @@ namespace AndroidDependencyBuilder
                 Arguments = adtString
             };
 
-            try
-            {
+            try {
                 using var exeProcess = Process.Start(startInfo);
                 exeProcess?.WaitForExit();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
             }
         }
 
-        private static void CleanupBuildFiles()
-        {
+        private static void CleanupBuildFiles() {
             var buildDir = $"{BuildDirectory}";
-            if (Directory.Exists(buildDir))
-            {
+            if (Directory.Exists(buildDir)) {
                 Directory.Delete(buildDir, true);
             }
         }
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
-        {
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true) {
             var dir = new DirectoryInfo(sourceDirName);
 
-            if (!dir.Exists)
-            {
+            if (!dir.Exists) {
                 throw new DirectoryNotFoundException(
                     "Source directory does not exist or could not be found: "
                     + sourceDirName);
@@ -394,15 +359,13 @@ namespace AndroidDependencyBuilder
 
             var dirs = dir.GetDirectories();
             // If the destination directory doesn't exist, create it.
-            if (!Directory.Exists(destDirName))
-            {
+            if (!Directory.Exists(destDirName)) {
                 Directory.CreateDirectory(destDirName);
             }
 
             // Get the files in the directory and copy them to the new location.
             var files = dir.GetFiles();
-            foreach (var file in files)
-            {
+            foreach (var file in files) {
                 var tempPath = Path.Combine(destDirName, file.Name);
                 file.CopyTo(tempPath, false);
             }
@@ -410,8 +373,7 @@ namespace AndroidDependencyBuilder
             // If copying subdirectories, copy them and their contents to new location.
             if (!copySubDirs) return;
             {
-                foreach (var subDir in dirs)
-                {
+                foreach (var subDir in dirs) {
                     var tempPath = Path.Combine(destDirName, subDir.Name);
                     DirectoryCopy(subDir.FullName, tempPath);
                 }
