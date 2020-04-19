@@ -1296,7 +1296,7 @@
     <package name="billing">
         <groupId>com.android.billingclient</groupId>
         <artifactId>billing</artifactId>
-        <version>2.1.0</version>
+        <version>2.2.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -1304,7 +1304,7 @@
             <package name="billing-ktx">
                 <groupId>com.android.billingclient</groupId>
                 <artifactId>billing-ktx</artifactId>
-                <version>2.1.0</version>
+                <version>2.2.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
