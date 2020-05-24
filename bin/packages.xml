@@ -511,6 +511,16 @@
         </dependancies>
     </package>
 
+    <package name="onesignal">
+        <groupId>com.onesignal</groupId>
+        <artifactId>OneSignal</artifactId>
+        <version>3.13.2</version>
+        <type>aar</type>
+        <repo>maven</repo>
+        <category>firebase</category>
+        <dependancies/>
+    </package>
+    
     <package name="firebase-perf">
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.perf</packageName>
@@ -785,8 +795,7 @@
             </package>
         </dependancies>
     </package>
-
-
+    
     <package name="support-v4">
         <groupId>com.android.support</groupId>
         <artifactId>support-v4</artifactId>
@@ -839,6 +848,7 @@
             </package>
         </dependancies>
     </package>
+    
     <package name="androidx-cardview">
         <groupId>androidx.cardview</groupId>
         <artifactId>cardview</artifactId>
