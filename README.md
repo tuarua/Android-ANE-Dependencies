@@ -10,7 +10,6 @@ A set of precompiled ANEs are [available here](https://github.com/tuarua/Android
 ## Compiling your own libaries
 
 You will need:
-- Windows
 - Android Studio 3.6.2+ installed
 - AIR 29 SDK
 - .Net Core Runtime
