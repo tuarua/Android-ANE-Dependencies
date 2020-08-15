@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace AndroidDependencyBuilder {
         protected Type Type;
         protected Repo Repo;
         public bool HasResources { get; private set; }
-        protected bool HasJni { get; private set; }
+        protected internal bool HasJni { get; set; }
         protected static string CurrentDirectory => Directory.GetCurrentDirectory();
 
         public async Task Download(string category) {
@@ -27,7 +28,7 @@ namespace AndroidDependencyBuilder {
 
             if (File.Exists($"{packageDirectory}-{packageName}.jar")) {
                 Console.WriteLine($"{packageName} already exists");
-                HasResources = Directory.Exists(resourcesDestination);
+                HasResources = Directory.Exists(resourcesDestination) && !IsDirectoryEmpty(resourcesDestination);
                 HasJni = Directory.Exists(jniDestination);
                 return;
             }
@@ -55,7 +56,7 @@ namespace AndroidDependencyBuilder {
                     File.Delete(zipPath);
                     File.Move($"{packageDirectory}/{packageName}/classes.jar", $"{packageDirectory}/{packageName}.jar");
 
-                    if (Directory.Exists(resourcesSource)) {
+                    if (Directory.Exists(resourcesSource) && !IsDirectoryEmpty(resourcesSource)) {
                         if (Directory.Exists(resourcesDestination)) {
                             Directory.Delete(resourcesDestination, true);
                         }
@@ -100,6 +101,10 @@ namespace AndroidDependencyBuilder {
                 "jar" => Type.jar,
                 _ => Type.aar
             };
+        }
+        
+        private static bool IsDirectoryEmpty(string path) {
+            return !Directory.EnumerateFileSystemEntries(path).Any();
         }
     }
 }

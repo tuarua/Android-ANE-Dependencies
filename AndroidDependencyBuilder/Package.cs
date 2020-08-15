@@ -299,7 +299,8 @@ namespace AndroidDependencyBuilder {
                     adtString += " ";
                     adtString += string.Join(" ", resources);
 
-                    if (!HasJni) continue;
+                    var hasDependencyJni = _dependencies.Any(dependency => dependency.HasJni);
+                    if (!HasJni && !hasDependencyJni) continue;
                     var libsFolder = $"{BuildDirectory}/platforms/android/libs";
                     var arch = Arches[p];
                     var archFolder = $"{libsFolder}/{arch}";
@@ -311,10 +312,18 @@ namespace AndroidDependencyBuilder {
                         Directory.CreateDirectory(archFolder);
                     }
 
-                    var jniSource =
-                        $"{CurrentDirectory}/cache/{Category}/{GroupId}-{ArtifactId}-{Version}-jni/{arch}";
-                    DirectoryCopy(jniSource, archFolder);
-                    adtString += $"libs/{arch}/.";
+                    if (HasJni) {
+                        var jniSource = $"{CurrentDirectory}/cache/{Category}/{GroupId}-{ArtifactId}-{Version}-jni/{arch}";
+                        DirectoryCopy(jniSource, archFolder);
+                    }
+
+                    if (hasDependencyJni) {
+                        foreach (var jniSource in _dependencies.Select(dependency => $"{CurrentDirectory}/cache/{Category}/{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-jni/{arch}")) {
+                            DirectoryCopy(jniSource, archFolder);
+                        }
+                    }
+
+                    adtString += $" libs/{arch}/.";
                 }
             }
 
