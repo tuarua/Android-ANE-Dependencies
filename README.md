@@ -20,6 +20,8 @@ Packages can be loaded from jcenter | maven | google
 
 Update AIR SDK path in [airsdk.cfg](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/airsdk.cfg)  
 
+Update Android SDK path in [local.properties](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/native_library/android/local.properties)  
+
 #### macOS
 
 ```shell
