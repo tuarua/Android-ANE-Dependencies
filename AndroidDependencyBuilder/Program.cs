@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -26,11 +25,7 @@ namespace AndroidDependencyBuilder {
                 return;
             }
 
-            LoadAndroidSdkDir();
-            if (ManifestMergerPath == null) {
-                PrintError($"Cannot find the manifest-merger");
-                return;
-            }
+            GetManifestMerger();
             LoadPackages();
             LoadAirConfig();
 
@@ -61,19 +56,9 @@ namespace AndroidDependencyBuilder {
             AdtPath = $"{_airSdkPath}/bin/{adt}";
         }
 
-        private static void LoadAndroidSdkDir() {
-            var propsPath = $"{Directory.GetCurrentDirectory()}/../native_library/android/local.properties";
-            var lines = File.ReadLines(propsPath);
-            foreach (var line in lines) {
-                if (line.Length < 8) {
-                    continue;
-                }
-                if (line.Substring(0, 8) != "sdk.dir=") continue;
-                var androidSdkPath = line.Split("=")[1];
-                var manifestMerger = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "manifest-merger.bat" : "manifest-merger";
-                ManifestMergerPath = $"{androidSdkPath}/tools/bin/{manifestMerger}";
-                break;
-            }
+        private static void GetManifestMerger() {
+            var manifestMerger = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "manifest-merger.bat" : "manifest-merger";
+            ManifestMergerPath = $"{Directory.GetCurrentDirectory()}/{manifestMerger}";
         }
 
         private static void LoadPackages() {
