@@ -10,9 +10,9 @@ A set of precompiled ANEs are [available here](https://github.com/tuarua/Android
 ## Compiling your own libaries
 
 You will need:
-- Android Studio 3.6.2+ installed
-- AIR 29 SDK
-- .Net Core Runtime
+- [Android Studio 3.6.2+](https://dotnet.microsoft.com/download)
+- AIR 33 SDK
+- [.Net Core Runtime](https://dotnet.microsoft.com/download)
 
 Packages are described in [packages.xml](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/packages.xml)   
 The format follows closely the maven package descriptor   
