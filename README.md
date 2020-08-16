@@ -18,9 +18,7 @@ Packages are described in [packages.xml](https://github.com/tuarua/Android-ANE-D
 The format follows closely the maven package descriptor   
 Packages can be loaded from jcenter | maven | google   
 
-Update AIR SDK path in [airsdk.cfg](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/airsdk.cfg)  
-
-Update Android SDK path in [local.properties](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/native_library/android/local.properties)  
+Update AIR SDK path in [airsdk.cfg](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/airsdk.cfg)   
 
 #### macOS
 
