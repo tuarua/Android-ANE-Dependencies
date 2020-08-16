@@ -2,8 +2,6 @@ using System.Xml;
 
 namespace AndroidDependencyBuilder {
     public class Dependency : PackageBase {
-        public readonly string PackageName;
-
         public Dependency(XmlNode node) {
             Name = node.Attributes["name"].Value;
             GroupId = node["groupId"]?.ChildNodes[0].Value;

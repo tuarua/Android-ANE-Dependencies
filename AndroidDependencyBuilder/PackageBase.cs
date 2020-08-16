@@ -8,19 +8,23 @@ using System.Threading.Tasks;
 namespace AndroidDependencyBuilder {
     public abstract class PackageBase {
         public string Name;
+        public string PackageName;
         public string GroupId;
         public string ArtifactId;
         public string Version;
         protected Type Type;
         protected Repo Repo;
         public bool HasResources { get; private set; }
-        protected internal bool HasJni { get; set; }
+        protected internal bool HasJni { get; private set; }
+        protected internal bool HasAndroidManifest { get; private set; }
         protected static string CurrentDirectory => Directory.GetCurrentDirectory();
 
         public async Task Download(string category) {
             var packageName = $"{ArtifactId}-{Version}";
             var packageDirectory = $"{CurrentDirectory}/cache/{category}/{GroupId}";
             var resourcesSource = $"{packageDirectory}/{packageName}/res";
+            var manifestSource = $"{packageDirectory}/{packageName}/AndroidManifest.xml";
+            var manifestDestination = $"{packageDirectory}-{packageName}-AndroidManifest.xml";
             var resourcesDestination = $"{packageDirectory}-{packageName}-res";
             var jniSource = $"{packageDirectory}/{packageName}/jni";
             var jniDestination = $"{packageDirectory}-{packageName}-jni";
@@ -30,6 +34,7 @@ namespace AndroidDependencyBuilder {
                 Console.WriteLine($"{packageName} already exists");
                 HasResources = Directory.Exists(resourcesDestination) && !IsDirectoryEmpty(resourcesDestination);
                 HasJni = Directory.Exists(jniDestination);
+                HasAndroidManifest = File.Exists(manifestDestination);
                 return;
             }
 
@@ -47,7 +52,7 @@ namespace AndroidDependencyBuilder {
             try {
                 var response = await client.GetByteArrayAsync(
                     new Uri($"{Program.RepoUrls[Repo]}{groupIdPath}/{ArtifactId}/{Version}/{packageName}.{Type}"));
-                File.WriteAllBytes($"{packageDirectory}/{packageName}.{Type}", response);
+                await File.WriteAllBytesAsync($"{packageDirectory}/{packageName}.{Type}", response);
 
                 if (Type == Type.aar) {
                     var zipPath = $"{packageDirectory}/{packageName}.zip";
@@ -55,6 +60,15 @@ namespace AndroidDependencyBuilder {
                     ZipFile.ExtractToDirectory(zipPath, $"{packageDirectory}/{packageName}");
                     File.Delete(zipPath);
                     File.Move($"{packageDirectory}/{packageName}/classes.jar", $"{packageDirectory}/{packageName}.jar");
+                    
+                    if (File.Exists(manifestSource)) {
+                        if (File.Exists(manifestDestination)) {
+                            File.Delete(manifestDestination);
+                        }
+                        
+                        File.Copy(manifestSource, manifestDestination, true);
+                        HasAndroidManifest = true;
+                    }
 
                     if (Directory.Exists(resourcesSource) && !IsDirectoryEmpty(resourcesSource)) {
                         if (Directory.Exists(resourcesDestination)) {
