@@ -301,45 +301,6 @@ namespace AndroidDependencyBuilder {
                     adtString += " ";
                     adtString += string.Join(" ", resources);
 
-                    var hasDependencyAndroidManifest = _dependencies.Any(dependency => dependency.HasAndroidManifest);
-                    if (HasAndroidManifest || hasDependencyAndroidManifest) {
-                        File.Copy($"{packageDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", $"{BuildDirectory}/platforms/android/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", true);
-                        if (hasDependencyAndroidManifest) {
-                            // TODO if !HasAndroidManifest create a dummy one
-                            var dependencyManifests = (from dependency in _dependencies where dependency.HasAndroidManifest select $"{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-AndroidManifest.xml").ToList();
-                            foreach (var manifest in dependencyManifests) {
-                                File.Copy($"{packageDirectory}/{manifest}", $"{BuildDirectory}/platforms/android/{manifest}", true);
-                            }
-                            var mergerString = $"{Program.ManifestMergerPath} --main {GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml --libs {string.Join(" --libs ", dependencyManifests)} --out {GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml --log ERROR";
-
-                            var mergeInfo = new ProcessStartInfo(Shell) {
-                                CreateNoWindow = false,
-                                UseShellExecute = false,
-                                WorkingDirectory = $"{BuildDirectory}/platforms/android",
-                                WindowStyle = ProcessWindowStyle.Hidden,
-                                Arguments = mergerString
-                            };
-
-                            try {
-                                using var exeProcess = Process.Start(mergeInfo);
-                                exeProcess?.WaitForExit();
-                            }
-                            catch (Exception e) {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(e.Message);
-                            }
-                            
-                        }
-                        
-                        File.Copy(
-                            hasDependencyAndroidManifest
-                                ? $"{BuildDirectory}/platforms/android/{GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml"
-                                : $"{BuildDirectory}/platforms/android/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml",
-                            $"{BuildDirectory}/platforms/android/AndroidManifest.xml", true);
-
-                        adtString += " AndroidManifest.xml ";
-                    }
-
                     var hasDependencyJni = _dependencies.Any(dependency => dependency.HasJni);
                     if (!HasJni && !hasDependencyJni) continue;
                     var libsFolder = $"{BuildDirectory}/platforms/android/libs";
@@ -370,6 +331,45 @@ namespace AndroidDependencyBuilder {
 
                     adtString += $" libs/{arch}/.";
                 }
+            }
+         
+            var hasDependencyAndroidManifest = _dependencies.Any(dependency => dependency.HasAndroidManifest);
+            if (HasAndroidManifest || hasDependencyAndroidManifest) {
+                File.Copy($"{packageDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", true);
+                if (hasDependencyAndroidManifest) {
+                    // TODO if !HasAndroidManifest create a dummy one
+                    var dependencyManifests = (from dependency in _dependencies where dependency.HasAndroidManifest select $"{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-AndroidManifest.xml").ToList();
+                    foreach (var manifest in dependencyManifests) {
+                        File.Copy($"{packageDirectory}/{manifest}", $"{BuildDirectory}/{manifest}", true);
+                    }
+                    var mergerString = $"{Program.ManifestMergerPath} --main {GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml --libs {string.Join(" --libs ", dependencyManifests)} --out {GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml --log ERROR";
+
+                    var mergeInfo = new ProcessStartInfo(Shell) {
+                        CreateNoWindow = false,
+                        UseShellExecute = false,
+                        WorkingDirectory = $"{BuildDirectory}",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        Arguments = mergerString
+                    };
+
+                    try {
+                        using var exeProcess = Process.Start(mergeInfo);
+                        exeProcess?.WaitForExit();
+                    }
+                    catch (Exception e) {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(e.Message);
+                    }
+                    
+                }
+                
+                File.Copy(
+                    hasDependencyAndroidManifest
+                        ? $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml"
+                        : $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml",
+                    $"{BuildDirectory}/AndroidManifest.xml", true);
+                
+                adtString += $" -C {BuildDirectory} AndroidManifest.xml ";
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
