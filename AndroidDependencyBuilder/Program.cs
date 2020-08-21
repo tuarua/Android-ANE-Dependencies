@@ -10,6 +10,7 @@ namespace AndroidDependencyBuilder {
     public static class Program {
         private static string _airSdkPath;
         public static string AdtPath;
+        public static string ManifestMergerPath;
         private static readonly Dictionary<string, Package> Packages = new Dictionary<string, Package>();
 
         public static readonly Dictionary<Repo, string> RepoUrls = new Dictionary<Repo, string> {
@@ -20,20 +21,17 @@ namespace AndroidDependencyBuilder {
 
         private static async Task Main(string[] args) {
             if (args.Length == 0) {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Pass the package name to compile as an argument");
-                Console.ResetColor();
+                PrintError("Pass the package name to compile as an argument");
                 return;
             }
 
+            GetManifestMerger();
             LoadPackages();
             LoadAirConfig();
 
             var packageName = args[0];
             if (!Packages.ContainsKey(packageName)) {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Cannot find the package {packageName}");
-                Console.ResetColor();
+                PrintError($"Cannot find the package {packageName}");
                 return;
             }
 
@@ -46,10 +44,21 @@ namespace AndroidDependencyBuilder {
             Console.ResetColor();
         }
 
+        private static void PrintError(string message) {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
         private static void LoadAirConfig() {
             _airSdkPath = File.ReadAllText("airsdk.cfg");
             var adt = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "adt.bat" : "adt";
             AdtPath = $"{_airSdkPath}/bin/{adt}";
+        }
+
+        private static void GetManifestMerger() {
+            var manifestMerger = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "manifest-merger.bat" : "manifest-merger";
+            ManifestMergerPath = $"{Directory.GetCurrentDirectory()}/{manifestMerger}";
         }
 
         private static void LoadPackages() {

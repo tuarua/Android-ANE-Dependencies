@@ -34,6 +34,7 @@ namespace AndroidDependencyBuilder {
             Type = ConvertType(node["type"].ChildNodes[0].Value);
             Repo = ConvertRepo(node["repo"].ChildNodes[0].Value);
             Category = node["category"]?.ChildNodes[0].Value;
+            PackageName = node["packageName"]?.ChildNodes[0].Value;
 
             var xmlNodeList = node["dependancies"]?.ChildNodes;
             if (xmlNodeList == null) return;
@@ -88,18 +89,19 @@ namespace AndroidDependencyBuilder {
             packagedDependenciesNode.AppendChild(baseJarNode);
 
             XmlNode packagedResourcesNode = doc.CreateElement("packagedResources");
+            
             if (HasResources) {
                 XmlNode resourceNode = doc.CreateElement("packagedResource");
-
                 XmlNode packageNameNode = doc.CreateElement("packageName");
                 XmlNode folderNameNode = doc.CreateElement("folderName");
 
-                packageNameNode.AppendChild(doc.CreateTextNode($"{GroupId}"));
-                folderNameNode.AppendChild(doc.CreateTextNode($"{GroupId}-{ArtifactId}-{Version}-res"));
+                packageNameNode.AppendChild(PackageName != null
+                    ? doc.CreateTextNode($"{PackageName}")
+                    : doc.CreateTextNode($"{GroupId}-{ArtifactId}"));
 
+                folderNameNode.AppendChild(doc.CreateTextNode($"{GroupId}-{ArtifactId}-{Version}-res"));
                 resourceNode.AppendChild(packageNameNode);
                 resourceNode.AppendChild(folderNameNode);
-
                 packagedResourcesNode.AppendChild(resourceNode);
             }
 
@@ -314,17 +316,60 @@ namespace AndroidDependencyBuilder {
 
                     if (HasJni) {
                         var jniSource = $"{CurrentDirectory}/cache/{Category}/{GroupId}-{ArtifactId}-{Version}-jni/{arch}";
-                        DirectoryCopy(jniSource, archFolder);
+                        if (Directory.Exists(jniSource)) {
+                            DirectoryCopy(jniSource, archFolder);
+                        }
                     }
 
                     if (hasDependencyJni) {
-                        foreach (var jniSource in _dependencies.Select(dependency => $"{CurrentDirectory}/cache/{Category}/{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-jni/{arch}")) {
-                            DirectoryCopy(jniSource, archFolder);
+                        foreach (var jniSource in from dependency in _dependencies where dependency.HasJni select $"{CurrentDirectory}/cache/{Category}/{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-jni/{arch}") {
+                            if (Directory.Exists(jniSource)) {
+                                DirectoryCopy(jniSource, archFolder);
+                            }
                         }
                     }
 
                     adtString += $" libs/{arch}/.";
                 }
+            }
+         
+            var hasDependencyAndroidManifest = _dependencies.Any(dependency => dependency.HasAndroidManifest);
+            if (HasAndroidManifest || hasDependencyAndroidManifest) {
+                File.Copy($"{packageDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", true);
+                if (hasDependencyAndroidManifest) {
+                    // TODO if !HasAndroidManifest create a dummy one
+                    var dependencyManifests = (from dependency in _dependencies where dependency.HasAndroidManifest select $"{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-AndroidManifest.xml").ToList();
+                    foreach (var manifest in dependencyManifests) {
+                        File.Copy($"{packageDirectory}/{manifest}", $"{BuildDirectory}/{manifest}", true);
+                    }
+                    var mergerString = $"{Program.ManifestMergerPath} --main {GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml --libs {string.Join(" --libs ", dependencyManifests)} --out {GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml --log ERROR";
+
+                    var mergeInfo = new ProcessStartInfo(Shell) {
+                        CreateNoWindow = false,
+                        UseShellExecute = false,
+                        WorkingDirectory = $"{BuildDirectory}",
+                        WindowStyle = ProcessWindowStyle.Hidden,
+                        Arguments = mergerString
+                    };
+
+                    try {
+                        using var exeProcess = Process.Start(mergeInfo);
+                        exeProcess?.WaitForExit();
+                    }
+                    catch (Exception e) {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(e.Message);
+                    }
+                    
+                }
+                
+                File.Copy(
+                    hasDependencyAndroidManifest
+                        ? $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml"
+                        : $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml",
+                    $"{BuildDirectory}/AndroidManifest.xml", true);
+                
+                adtString += $" -C {BuildDirectory} AndroidManifest.xml ";
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
