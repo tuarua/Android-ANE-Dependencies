@@ -21,7 +21,7 @@ namespace AndroidDependencyBuilder {
 
         private static async Task Main(string[] args) {
             if (args.Length == 0) {
-                PrintError("Pass the package name to compile as an argument");
+                PrintError("Pass the package name to compile as an argument or -all to compile all");
                 return;
             }
 
@@ -30,15 +30,26 @@ namespace AndroidDependencyBuilder {
             LoadAirConfig();
 
             var packageName = args[0];
-            if (!Packages.ContainsKey(packageName)) {
-                PrintError($"Cannot find the package {packageName}");
-                return;
+            var list = new List<string>();
+            if (packageName == "-all")
+            {
+                list.AddRange(Packages.Select(p=> p.Key));
+            }
+            else
+            {
+                if (!Packages.ContainsKey(packageName)) {
+                    PrintError($"Cannot find the package {packageName}");
+                    return;
+                }
+                list.Add(packageName);
             }
 
-            var package = Packages[packageName];
-            await package.Download(package.Category);
-            package.CreateAneFiles();
-
+            foreach (var package in list.Select(pName => Packages[pName]))
+            {
+                await package.Download(package.Category);
+                package.CreateAneFiles();
+            }
+            
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Finished");
             Console.ResetColor();

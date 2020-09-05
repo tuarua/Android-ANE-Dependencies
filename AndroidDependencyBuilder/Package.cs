@@ -35,8 +35,8 @@ namespace AndroidDependencyBuilder {
             Repo = ConvertRepo(node["repo"].ChildNodes[0].Value);
             Category = node["category"]?.ChildNodes[0].Value;
             PackageName = node["packageName"]?.ChildNodes[0].Value;
-
-            var xmlNodeList = node["dependancies"]?.ChildNodes;
+            
+            var xmlNodeList = node["dependencies"]?.ChildNodes;
             if (xmlNodeList == null) return;
             _hasDependencies = xmlNodeList.Count > 0;
             foreach (XmlNode dependency in xmlNodeList) {
@@ -337,11 +337,15 @@ namespace AndroidDependencyBuilder {
             if (HasAndroidManifest || hasDependencyAndroidManifest) {
                 File.Copy($"{packageDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml", true);
                 if (hasDependencyAndroidManifest) {
-                    // TODO if !HasAndroidManifest create a dummy one
                     var dependencyManifests = (from dependency in _dependencies where dependency.HasAndroidManifest select $"{dependency.GroupId}-{dependency.ArtifactId}-{dependency.Version}-AndroidManifest.xml").ToList();
                     foreach (var manifest in dependencyManifests) {
                         File.Copy($"{packageDirectory}/{manifest}", $"{BuildDirectory}/{manifest}", true);
+                        // need to convert all placeholders ${xxx} with #{xxx} to prevent manifest merger from filling the values
+                        var text = File.ReadAllText($"{BuildDirectory}/{manifest}");
+                        text = text.Replace("${", "#{");
+                        File.WriteAllText($"{BuildDirectory}/{manifest}", text);
                     }
+                    
                     var mergerString = $"{Program.ManifestMergerPath} --main {GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml --libs {string.Join(" --libs ", dependencyManifests)} --out {GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml --log ERROR";
 
                     var mergeInfo = new ProcessStartInfo(Shell) {
@@ -368,8 +372,6 @@ namespace AndroidDependencyBuilder {
                         ? $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml"
                         : $"{BuildDirectory}/{GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml",
                     $"{BuildDirectory}/AndroidManifest.xml", true);
-                
-                adtString += $" -C {BuildDirectory} AndroidManifest.xml ";
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
@@ -388,6 +390,16 @@ namespace AndroidDependencyBuilder {
             try {
                 using var exeProcess = Process.Start(startInfo);
                 exeProcess?.WaitForExit();
+
+                if (!HasAndroidManifest && !hasDependencyAndroidManifest) return;
+                var anePath = $"{CurrentDirectory}/../anes/{Category}/{GroupId}.{ArtifactId}-{Version}.ane";
+                var zipPath = Path.ChangeExtension(anePath, "zip");
+                File.Move(anePath, zipPath, true);
+                using var zipToOpen = new FileStream(zipPath, FileMode.Open);
+                using var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update);
+                
+                archive.CreateEntryFromFile($"{BuildDirectory}/AndroidManifest.xml", "AndroidManifest.xml", CompressionLevel.NoCompression);
+                File.Move(zipPath, anePath, true);
             }
             catch (Exception e) {
                 Console.ForegroundColor = ConsoleColor.Red;

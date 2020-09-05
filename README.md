@@ -12,7 +12,7 @@ A set of precompiled ANEs are [available here](https://github.com/tuarua/Android
 You will need:
 - [Android Studio 3.6.2+](https://dotnet.microsoft.com/download)
 - AIR 33 SDK
-- [.Net Core Runtime](https://dotnet.microsoft.com/download)
+- [.Net Core Runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 Packages are described in [packages.xml](https://github.com/tuarua/Android-ANE-Dependencies/tree/master/bin/packages.xml)   
 The format follows closely the maven package descriptor   
