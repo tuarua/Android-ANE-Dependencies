@@ -914,11 +914,11 @@
             </package>
         </dependencies>
     </package>
-
-    <package name="consent-library">
-        <groupId>com.google.android.ads.consent</groupId>
-        <artifactId>consent-library</artifactId>
-        <version>1.0.8</version>
+    
+    <package name="user-messaging-platform">
+        <groupId>com.google.android.ump</groupId>
+        <artifactId>user-messaging-platform</artifactId>
+        <version>1.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -929,7 +929,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>19.0.1</version>
+        <version>19.3.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -937,7 +937,7 @@
             <package name="play-services-ads-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-ads-base</artifactId>
-                <version>19.0.1</version>
+                <version>19.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>

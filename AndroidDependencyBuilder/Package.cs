@@ -347,7 +347,9 @@ namespace AndroidDependencyBuilder {
                     }
                     
                     var mergerString = $"{Program.ManifestMergerPath} --main {GroupId}-{ArtifactId}-{Version}-AndroidManifest.xml --libs {string.Join(" --libs ", dependencyManifests)} --out {GroupId}-{ArtifactId}-{Version}-AndroidManifest-merged.xml --log ERROR";
-
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) {
+                        mergerString = $"/c {mergerString}";
+                    }
                     var mergeInfo = new ProcessStartInfo(Shell) {
                         CreateNoWindow = false,
                         UseShellExecute = false,
