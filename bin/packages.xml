@@ -1204,7 +1204,7 @@
     <package name="billing-ktx">
         <groupId>com.android.billingclient</groupId>
         <artifactId>billing-ktx</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.2</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -1212,7 +1212,7 @@
             <package name="billing">
                 <groupId>com.android.billingclient</groupId>
                 <artifactId>billing</artifactId>
-                <version>3.0.0</version>
+                <version>3.0.2</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -1226,6 +1226,16 @@
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
+        <dependencies/>
+    </package>
+    
+    <package name="android-installreferrer">
+        <groupId>com.android.installreferrer</groupId>
+        <artifactId>installreferrer</artifactId>
+        <version>1.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>play-services</category>
         <dependencies/>
     </package>
 
