@@ -1242,7 +1242,7 @@
     <package name="facebook-android-sdk">
         <groupId>com.facebook.android</groupId>
         <artifactId>facebook-android-sdk</artifactId>
-        <version>5.13.0</version>
+        <version>8.2.0</version>
         <type>aar</type>
         <repo>maven</repo>
         <category>facebook</category>
@@ -1250,7 +1250,7 @@
             <package name="facebook-core">
                 <groupId>com.facebook.android</groupId>
                 <artifactId>facebook-core</artifactId>
-                <version>5.13.0</version>
+                <version>8.2.0</version>
                 <type>aar</type>
                 <repo>maven</repo>
             </package>
@@ -1258,7 +1258,7 @@
                 <groupId>com.facebook.android</groupId>
                 <artifactId>facebook-common</artifactId>
                 <packageName>com.facebook.common</packageName>
-                <version>5.13.0</version>
+                <version>8.2.0</version>
                 <type>aar</type>
                 <repo>maven</repo>
             </package>
@@ -1266,7 +1266,7 @@
                 <groupId>com.facebook.android</groupId>
                 <artifactId>facebook-login</artifactId>
                 <packageName>com.facebook.login</packageName>
-                <version>5.13.0</version>
+                <version>8.2.0</version>
                 <type>aar</type>
                 <repo>maven</repo>
             </package>
@@ -1274,7 +1274,15 @@
                 <groupId>com.facebook.android</groupId>
                 <artifactId>facebook-share</artifactId>
                 <packageName>com.facebook.share</packageName>
-                <version>5.13.0</version>
+                <version>8.2.0</version>
+                <type>aar</type>
+                <repo>maven</repo>
+            </package>
+            <package name="facebook-gamingservices">
+                <groupId>com.facebook.android</groupId>
+                <groupId>com.facebook.android</groupId>
+                <artifactId>facebook-gamingservices</artifactId>
+                <version>8.2.0</version>
                 <type>aar</type>
                 <repo>maven</repo>
             </package>
