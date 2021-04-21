@@ -1179,6 +1179,13 @@
                 <type>aar</type>
                 <repo>google</repo>
             </package>
+            <package name="play-services-safetynet">
+                <groupId>com.google.android.gms</groupId>
+                <artifactId>play-services-safetynet</artifactId>
+                <version>17.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
         </dependencies>
     </package>
 
