@@ -113,7 +113,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.components</packageName>
         <artifactId>firebase-components</artifactId>
-        <version>16.1.0</version>
+        <version>17.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -123,7 +123,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.iid</packageName>
         <artifactId>firebase-iid</artifactId>
-        <version>21.0.1</version>
+        <version>21.1.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -131,7 +131,7 @@
             <package name="firebase-iid-interop">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-iid-interop</artifactId>
-                <version>17.0.0</version>
+                <version>17.1.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -148,7 +148,7 @@
     <package name="firebase-firestore-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-firestore-ktx</artifactId>
-        <version>22.0.1</version>
+        <version>23.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -157,21 +157,21 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.firestore</packageName>
                 <artifactId>firebase-firestore</artifactId>
-                <version>22.0.1</version>
+                <version>23.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-database-collection">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-database-collection</artifactId>
-                <version>17.0.1</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="protolite-well-known-types">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>protolite-well-known-types</artifactId>
-                <version>17.1.1</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -258,7 +258,7 @@
     <package name="firebase-auth-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-auth-ktx</artifactId>
-        <version>20.0.1</version>
+        <version>21.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -267,14 +267,14 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.auth</packageName>
                 <artifactId>firebase-auth</artifactId>
-                <version>20.0.1</version>
+                <version>21.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-auth-interop">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-auth-interop</artifactId>
-                <version>19.0.0</version>
+                <version>20.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -284,7 +284,7 @@
     <package name="firebase-analytics-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-analytics-ktx</artifactId>
-        <version>18.0.0</version>
+        <version>19.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -293,7 +293,7 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.analytics</packageName>
                 <artifactId>firebase-analytics</artifactId>
-                <version>18.0.0</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -301,56 +301,56 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.common</packageName>
                 <artifactId>firebase-common</artifactId>
-                <version>19.5.0</version>
+                <version>20.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-common-ktx">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-common-ktx</artifactId>
-                <version>19.5.0</version>
+                <version>20.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-measurement-connector">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-measurement-connector</artifactId>
-                <version>18.0.1</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
-            <package name="auto-value-annotations">
-                <groupId>com.google.auto.value</groupId>
-                <artifactId>auto-value-annotations</artifactId>
-                <version>1.7.4</version>
+            <package name="firebase-annotations">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-annotations</artifactId>
+                <version>16.0.0</version>
                 <type>jar</type>
-                <repo>maven</repo>
+                <repo>google</repo>
             </package>
             <package name="firebase-datatransport">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-datatransport</artifactId>
-                <version>17.0.10</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="transport-api">
                 <groupId>com.google.android.datatransport</groupId>
                 <artifactId>transport-api</artifactId>
-                <version>2.2.1</version>
+                <version>3.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="transport-backend-cct">
                 <groupId>com.google.android.datatransport</groupId>
                 <artifactId>transport-backend-cct</artifactId>
-                <version>2.3.3</version>
+                <version>3.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="transport-runtime">
                 <groupId>com.google.android.datatransport</groupId>
                 <artifactId>transport-runtime</artifactId>
-                <version>2.2.5</version>
+                <version>3.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -371,28 +371,28 @@
             <package name="firebase-encoders-json">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-encoders-json</artifactId>
-                <version>17.1.0</version>
+                <version>18.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-encoders">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-encoders</artifactId>
-                <version>16.1.0</version>
+                <version>17.0.0</version>
                 <type>jar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-installations">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-installations</artifactId>
-                <version>16.3.5</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-installations-interop">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-installations-interop</artifactId>
-                <version>16.0.1</version>
+                <version>17.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -402,7 +402,7 @@
     <package name="firebase-storage-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-storage-ktx</artifactId>
-        <version>19.2.1</version>
+        <version>20.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -410,7 +410,21 @@
             <package name="firebase-storage">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-storage</artifactId>
-                <version>19.2.1</version>
+                <version>20.0.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-appcheck">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-appcheck</artifactId>
+                <version>16.0.0-beta01</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+            <package name="firebase-appcheck-interop">
+                <groupId>com.google.firebase</groupId>
+                <artifactId>firebase-appcheck-interop</artifactId>
+                <version>16.0.0-beta01</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -420,7 +434,7 @@
     <package name="firebase-dynamic-links-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-dynamic-links-ktx</artifactId>
-        <version>19.1.1</version>
+        <version>20.1.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -428,7 +442,7 @@
             <package name="firebase-dynamic-links">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-dynamic-links</artifactId>
-                <version>19.1.1</version>
+                <version>20.1.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -438,7 +452,7 @@
     <package name="firebase-config-ktx">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-config-ktx</artifactId>
-        <version>20.0.2</version>
+        <version>21.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -447,14 +461,14 @@
                 <groupId>com.google.firebase</groupId>
                 <packageName>com.google.firebase.config</packageName>
                 <artifactId>firebase-config</artifactId>
-                <version>20.0.2</version>
+                <version>21.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="firebase-abt">
                 <groupId>com.google.firebase</groupId>
                 <artifactId>firebase-abt</artifactId>
-                <version>20.0.0</version>
+                <version>21.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -472,7 +486,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.messaging</packageName>
         <artifactId>firebase-messaging</artifactId>
-        <version>21.0.1</version>
+        <version>22.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -493,7 +507,7 @@
         <groupId>com.google.firebase</groupId>
         <packageName>com.google.firebase.perf</packageName>
         <artifactId>firebase-perf</artifactId>
-        <version>19.0.11</version>
+        <version>20.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
@@ -961,7 +975,7 @@
     <package name="play-services-measurement">
         <groupId>com.google.android.gms</groupId>
         <artifactId>play-services-measurement</artifactId>
-        <version>18.0.0</version>
+        <version>19.0.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -969,14 +983,14 @@
             <package name="play-services-measurement-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-measurement-base</artifactId>
-                <version>18.0.0</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-measurement-impl">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-measurement-impl</artifactId>
-                <version>18.0.0</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -990,14 +1004,14 @@
             <package name="play-services-measurement-api">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-measurement-api</artifactId>
-                <version>18.0.0</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-measurement-sdk-api">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-measurement-sdk-api</artifactId>
-                <version>18.0.0</version>
+                <version>19.0.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -1008,7 +1022,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.common</packageName>
         <artifactId>play-services-base</artifactId>
-        <version>17.2.0</version>
+        <version>17.5.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -1017,14 +1031,14 @@
                 <groupId>com.google.android.gms</groupId>
                 <packageName>com.google.android.gms</packageName>
                 <artifactId>play-services-basement</artifactId>
-                <version>17.2.0</version>
+                <version>17.5.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="play-services-tasks">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-tasks</artifactId>
-                <version>17.0.0</version>
+                <version>17.2.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -1229,7 +1243,7 @@
     <package name="firebase-crashlytics">
         <groupId>com.google.firebase</groupId>
         <artifactId>firebase-crashlytics</artifactId>
-        <version>17.3.0</version>
+        <version>18.0.1</version>
         <type>aar</type>
         <repo>google</repo>
         <category>firebase</category>
