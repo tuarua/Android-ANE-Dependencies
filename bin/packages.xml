@@ -743,6 +743,53 @@
         <dependencies/>
     </package>
 
+    <package name="androidx-work-runtime">
+        <groupId>androidx.work</groupId>
+        <packageName>androidx.work</packageName>
+        <artifactId>work-runtime</artifactId>
+        <version>2.5.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>support</category>
+        <dependencies/>
+    </package>
+    
+    <package name="androidx-room-runtime">
+        <groupId>androidx.room</groupId>
+        <artifactId>room-runtime</artifactId>
+        <version>2.3.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>support</category>
+        <dependencies>
+            <package name="androidx-room-runtime-common">
+                <groupId>androidx.room</groupId>
+                <artifactId>room-common</artifactId>
+                <version>2.3.0</version>
+                <type>jar</type>
+                <repo>google</repo>
+            </package>
+        </dependencies>
+    </package>
+    
+    <package name="androidx-sqlite-framework">
+        <groupId>androidx.sqlite</groupId>
+        <artifactId>sqlite-framework</artifactId>
+        <version>2.1.0</version>
+        <type>aar</type>
+        <repo>google</repo>
+        <category>support</category>
+        <dependencies>
+            <package name="androidx-room-runtime-common">
+                <groupId>androidx.sqlite</groupId>
+                <artifactId>sqlite</artifactId>
+                <version>2.1.0</version>
+                <type>aar</type>
+                <repo>google</repo>
+            </package>
+        </dependencies>
+    </package>
+    
     <package name="legacy-support-v4">
         <groupId>androidx.legacy</groupId>
         <artifactId>legacy-support-v4</artifactId>
@@ -754,14 +801,14 @@
             <package name="core">
                 <groupId>androidx.core</groupId>
                 <artifactId>core</artifactId>
-                <version>1.1.0</version>
+                <version>1.2.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="annotation">
                 <groupId>androidx.annotation</groupId>
                 <artifactId>annotation</artifactId>
-                <version>1.1.0</version>
+                <version>1.2.0</version>
                 <type>jar</type>
                 <repo>google</repo>
             </package>
@@ -775,7 +822,7 @@
             <package name="lifecycle-runtime">
                 <groupId>androidx.lifecycle</groupId>
                 <artifactId>lifecycle-runtime</artifactId>
-                <version>2.2.0</version>
+                <version>2.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -789,49 +836,49 @@
             <package name="arch-core-runtime">
                 <groupId>androidx.arch.core</groupId>
                 <artifactId>core-runtime</artifactId>
-                <version>2.0.0</version>
+                <version>2.1.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="lifecycle-common">
                 <groupId>androidx.lifecycle</groupId>
                 <artifactId>lifecycle-common</artifactId>
-                <version>2.2.0</version>
+                <version>2.3.0</version>
                 <type>jar</type>
                 <repo>google</repo>
             </package>
             <package name="lifecycle-viewmodel">
                 <groupId>androidx.lifecycle</groupId>
                 <artifactId>lifecycle-viewmodel</artifactId>
-                <version>2.0.0</version>
+                <version>2.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="lifecycle-livedata-core">
                 <groupId>androidx.lifecycle</groupId>
                 <artifactId>lifecycle-livedata-core</artifactId>
-                <version>2.0.0</version>
+                <version>2.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="versionedparcelable">
                 <groupId>androidx.versionedparcelable</groupId>
                 <artifactId>versionedparcelable</artifactId>
-                <version>1.0.0</version>
+                <version>1.1.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="fragment">
                 <groupId>androidx.fragment</groupId>
                 <artifactId>fragment</artifactId>
-                <version>1.0.0</version>
+                <version>1.3.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
             <package name="loader">
                 <groupId>androidx.loader</groupId>
                 <artifactId>loader</artifactId>
-                <version>1.0.0</version>
+                <version>1.1.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -845,7 +892,7 @@
             <package name="documentfile">
                 <groupId>androidx.documentfile</groupId>
                 <artifactId>documentfile</artifactId>
-                <version>1.0.0</version>
+                <version>1.0.1</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -957,7 +1004,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.ads</packageName>
         <artifactId>play-services-ads-lite</artifactId>
-        <version>19.3.0</version>
+        <version>20.2.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -965,7 +1012,7 @@
             <package name="play-services-ads-base">
                 <groupId>com.google.android.gms</groupId>
                 <artifactId>play-services-ads-base</artifactId>
-                <version>19.3.0</version>
+                <version>20.2.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
@@ -1022,7 +1069,7 @@
         <groupId>com.google.android.gms</groupId>
         <packageName>com.google.android.gms.common</packageName>
         <artifactId>play-services-base</artifactId>
-        <version>17.5.0</version>
+        <version>17.6.0</version>
         <type>aar</type>
         <repo>google</repo>
         <category>play-services</category>
@@ -1031,7 +1078,7 @@
                 <groupId>com.google.android.gms</groupId>
                 <packageName>com.google.android.gms</packageName>
                 <artifactId>play-services-basement</artifactId>
-                <version>17.5.0</version>
+                <version>17.6.0</version>
                 <type>aar</type>
                 <repo>google</repo>
             </package>
