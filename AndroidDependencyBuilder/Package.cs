@@ -27,7 +27,7 @@ namespace AndroidDependencyBuilder {
             {{"Android-ARM", "armeabi-v7a"}, {"Android-ARM64", "arm64-v8a"}, {"Android-x86", "x86"}};
 
         public Package(XmlNode node) {
-            Name = node.Attributes["name"].Value;
+            Name = node.Attributes?["name"].Value;
             GroupId = node["groupId"]?.ChildNodes[0].Value;
             ArtifactId = node["artifactId"].ChildNodes[0].Value;
             Version = node["version"].ChildNodes[0].Value;
@@ -96,8 +96,8 @@ namespace AndroidDependencyBuilder {
                 XmlNode folderNameNode = doc.CreateElement("folderName");
 
                 packageNameNode.AppendChild(PackageName != null
-                    ? doc.CreateTextNode($"{PackageName}")
-                    : doc.CreateTextNode($"{GroupId}-{ArtifactId}"));
+                    ? doc.CreateTextNode($"{PackageName.Replace("-", ".")}")
+                    : doc.CreateTextNode($"{GroupId}.{ArtifactId}".Replace("-", ".")));
 
                 folderNameNode.AppendChild(doc.CreateTextNode($"{GroupId}-{ArtifactId}-{Version}-res"));
                 resourceNode.AppendChild(packageNameNode);
@@ -169,7 +169,7 @@ namespace AndroidDependencyBuilder {
                 XmlNode platformNode = doc.CreateElement("platform");
                 var nameAttr = doc.CreateAttribute("name");
                 nameAttr.Value = p;
-                platformNode.Attributes.Append(nameAttr);
+                platformNode.Attributes?.Append(nameAttr);
 
                 XmlNode applicationDeploymentNode = doc.CreateElement("applicationDeployment");
 
@@ -267,13 +267,13 @@ namespace AndroidDependencyBuilder {
             var jars = new List<string>();
             var resources = new List<string>();
 
-            foreach (var name in from XmlNode node in doc.DocumentElement["packagedDependencies"]
+            foreach (var name in from XmlNode node in doc.DocumentElement?["packagedDependencies"]
                 select node.InnerText) {
                 jars.Add(name);
                 File.Copy($"{packageDirectory}/{name}", $"{BuildDirectory}/platforms/android/{name}", true);
             }
 
-            if (doc.DocumentElement["packagedResources"] != null) {
+            if (doc.DocumentElement?["packagedResources"] != null) {
                 foreach (var folderName in from XmlNode node in doc.DocumentElement["packagedResources"]
                     select node["folderName"].InnerText) {
                     resources.Add(folderName);
